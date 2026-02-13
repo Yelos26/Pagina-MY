@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartas de Amor 💌</title>
+    <link rel="stylesheet" href="css/cartas.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="petals-container"></div>
+
+    <button class="back-btn" onclick="window.location.href='main.html'">
+        <i class="fas fa-arrow-left"></i>
+        Volver
+    </button>
+
+    <div class="cartas-container">
+        <div class="cartas-header">
+            <h1>💌 Cartas de Amor</h1>
+            <p>Palabras escritas desde el corazón, solo para ti</p>
+        </div>
+
+        <div class="selector-container">
+            <h2><i class="fas fa-envelope"></i> Selecciona una carta</h2>
+            <div class="cartas-list" id="cartasList"></div>
+            <div class="no-cartas" id="noCartasMessage" style="display: none;">
+                <div class="no-cartas-content">
+                    <i class="fas fa-heart-broken"></i>
+                    <h3>Aún no hay cartas escritas...</h3>
+                    <p>Pero pronto habrá palabras especiales para ti</p>
+                    <div class="heart-animation">❤️</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carta-visualizador" id="cartaVisualizador" style="display: none;">
+            <div class="carta-papel">
+                <div class="carta-decoracion top-left">💌</div>
+                <div class="carta-decoracion bottom-right">❤️</div>
+                
+                <h3 id="cartaTitulo" class="carta-titulo"></h3>
+                <div class="carta-contenido" id="cartaContenido"></div>
+                
+                <div class="carta-firma">
+                    Con todo mi amor <br>
+                    <span class="firma-corazon">❤️</span>
+                </div>
+
+                <div class="paginacion-control" id="paginacionControl">
+                    <button class="page-btn" id="prevPageBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="page-info">
+                        <span id="paginaActual">1</span> / <span id="totalPaginas">1</span>
+                    </div>
+                    <button class="page-btn" id="nextPageBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/cartas.js"></script>
+</body>
+</html>

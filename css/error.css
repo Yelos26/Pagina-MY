@@ -1,0 +1,403 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, 
+        #ffcce6 0%, 
+        #ffccf2 25%, 
+        #ffd9cc 50%, 
+        #fff2cc 75%, 
+        #e6ccff 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Fondo con corazones rotos animados */
+.broken-heart {
+    position: absolute;
+    color: rgba(255, 105, 180, 0.1);
+    font-size: 30px;
+    animation: float 15s infinite linear;
+    z-index: -1;
+    opacity: 0;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.3;
+    }
+    90% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Contenedor principal */
+.error-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    padding: 60px 50px;
+    border-radius: 30px;
+    box-shadow: 
+        0 25px 80px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    animation: gentleAppear 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Borde decorativo superior */
+.error-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, 
+        #ff6b8b 0%, 
+        #ff8e53 25%, 
+        #ffcc00 50%, 
+        #4cd964 75%, 
+        #5ac8fa 100%);
+    border-radius: 30px 30px 0 0;
+}
+
+@keyframes gentleAppear {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Icono con animación */
+.error-icon {
+    font-size: 120px;
+    margin-bottom: 25px;
+    display: inline-block;
+    animation: heartbeat 2s infinite, gentleFloat 3s infinite ease-in-out;
+    filter: drop-shadow(0 10px 20px rgba(255, 107, 139, 0.3));
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes gentleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Texto */
+h1 {
+    color: #ff6b8b;
+    margin-bottom: 20px;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    background: linear-gradient(45deg, #ff6b8b, #ff8e53);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.error-message {
+    color: #666;
+    margin-bottom: 30px;
+    line-height: 1.7;
+    font-size: 18px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Botón elegante */
+.home-button {
+    padding: 18px 50px;
+    background: linear-gradient(135deg, #ff6b8b 0%, #ff8e53 100%);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.5px;
+    box-shadow: 0 10px 30px rgba(255, 107, 139, 0.3);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.home-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.3), 
+        transparent);
+    transition: left 0.6s ease;
+}
+
+.home-button:hover::before {
+    left: 100%;
+}
+
+.home-button:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(255, 107, 139, 0.4);
+    background: linear-gradient(135deg, #ff8e53 0%, #ff6b8b 100%);
+}
+
+.home-button:active {
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* Tip adicional */
+.error-tip {
+    margin-top: 40px;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(255, 245, 245, 0.8) 0%, rgba(255, 250, 240, 0.8) 100%);
+    border-radius: 15px;
+    border-left: 4px solid #ff6b8b;
+    text-align: left;
+    animation: slideIn 0.6s ease 0.3s both;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.error-tip h3 {
+    color: #ff6b8b;
+    margin-bottom: 10px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.error-tip p {
+    color: #666;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Contador de reintento (opcional) */
+.retry-counter {
+    margin-top: 25px;
+    font-size: 14px;
+    color: #888;
+    animation: fadeIn 1s ease 1s both;
+}
+
+/* Diseño responsive */
+@media (max-width: 768px) {
+    .error-container {
+        padding: 40px 30px;
+        margin: 0 15px;
+    }
+    
+    h1 {
+        font-size: 30px;
+    }
+    
+    .error-icon {
+        font-size: 90px;
+    }
+    
+    .error-message {
+        font-size: 16px;
+    }
+    
+    .home-button {
+        padding: 16px 40px;
+        font-size: 16px;
+    }
+    
+    .error-tip {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 15px;
+    }
+    
+    .error-container {
+        padding: 35px 25px;
+        border-radius: 25px;
+    }
+    
+    h1 {
+        font-size: 26px;
+    }
+    
+    .error-icon {
+        font-size: 70px;
+    }
+    
+    .home-button {
+        width: 100%;
+        padding: 18px 30px;
+    }
+    
+    .error-message {
+        font-size: 15px;
+    }
+    
+    .error-tip h3 {
+        font-size: 16px;
+    }
+    
+    .error-tip p {
+        font-size: 14px;
+    }
+}
+
+/* Para tablets en modo horizontal */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .error-container {
+        max-width: 700px;
+        padding: 50px 40px;
+    }
+    
+    h1 {
+        font-size: 32px;
+    }
+}
+
+/* Para pantallas muy grandes */
+@media (min-width: 1440px) {
+    .error-container {
+        max-width: 800px;
+        padding: 70px 60px;
+    }
+    
+    h1 {
+        font-size: 40px;
+    }
+    
+    .error-message {
+        font-size: 20px;
+    }
+}
+
+/* Para dispositivos con orientación landscape en móviles */
+@media (max-height: 600px) and (orientation: landscape) {
+    body {
+        padding: 10px;
+    }
+    
+    .error-container {
+        padding: 30px 25px;
+        max-width: 90%;
+    }
+    
+    .error-icon {
+        font-size: 60px;
+        margin-bottom: 15px;
+    }
+    
+    h1 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+    
+    .error-message {
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+    
+    .error-tip {
+        margin-top: 20px;
+        padding: 15px;
+    }
+}
+
+/* Animación para el texto de error */
+.error-message span {
+    display: inline-block;
+    opacity: 0;
+    animation: letterAppear 0.3s ease forwards;
+}
+
+.error-message span:nth-child(1) { animation-delay: 0.1s; }
+.error-message span:nth-child(2) { animation-delay: 0.2s; }
+.error-message span:nth-child(3) { animation-delay: 0.3s; }
+.error-message span:nth-child(4) { animation-delay: 0.4s; }
+/* Continúa según necesites */
+
+@keyframes letterAppear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Efecto de brillo intermitente */
+@keyframes gentleGlow {
+    0%, 100% {
+        box-shadow: 
+            0 25px 80px rgba(0, 0, 0, 0.15),
+            0 0 0 1px rgba(255, 255, 255, 0.8) inset,
+            0 0 30px rgba(255, 107, 139, 0.1);
+    }
+    50% {
+        box-shadow: 
+            0 25px 80px rgba(0, 0, 0, 0.15),
+            0 0 0 1px rgba(255, 255, 255, 0.8) inset,
+            0 0 50px rgba(255, 107, 139, 0.2);
+    }
+}
+
+.error-container {
+    animation: gentleAppear 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+               gentleGlow 3s infinite ease-in-out;
+}

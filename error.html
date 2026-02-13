@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>¡Oops! Un Momentito ❤️</title>
+    <link rel="stylesheet" href="css/error.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Corazones rotos decorativos -->
+    <div class="broken-hearts-container">
+        <!-- Generados dinámicamente con JavaScript -->
+    </div>
+
+    <div class="error-container">
+        <div class="error-icon">💔✨</div>
+        
+        <h1>¡Algo no salió como esperaba!</h1>
+        
+        <p class="error-message" id="errorText">
+            Parece que hubo un pequeño desacuerdo entre el código y el corazón. 
+            Pero no te preocupes, en el amor (y en la tecnología) siempre hay segundas oportunidades.
+        </p>
+        
+        <button class="home-button" onclick="goHome()">
+            <i class="fas fa-home"></i>
+            Volver al Amor
+        </button>
+        
+        <div class="retry-counter" id="retryCounter">
+            <!-- Contador opcional -->
+        </div>
+        
+        <div class="error-tip">
+            <h3>
+                <i class="fas fa-lightbulb"></i>
+                Consejo del Día
+            </h3>
+            <p>
+                Los mejores momentos a veces necesitan un reinicio. 
+                Como nuestro amor, esta página volverá a brillar. 
+                Intenta recargar o vuelve al inicio para continuar.
+            </p>
+        </div>
+    </div>
+
+    <script src="js/error.js"></script>
+    <script>
+        // Generar corazones rotos animados
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('.broken-hearts-container');
+            const heartSymbols = ['💔', '❤️‍🩹', '😢', '✨', '🔄'];
+            
+            // Crear 15 corazones rotos animados
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'broken-heart';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 15 + 's';
+                heart.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                heart.style.fontSize = (Math.random() * 25 + 20) + 'px';
+                heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                container.appendChild(heart);
+            }
+
+            // Animar letra por letra del mensaje
+            const errorText = document.getElementById('errorText').textContent;
+            const errorTextElement = document.getElementById('errorText');
+            errorTextElement.innerHTML = '';
+            
+            errorText.split('').forEach((char, index) => {
+                const span = document.createElement('span');
+                span.textContent = char;
+                span.style.animationDelay = (index * 0.03) + 's';
+                errorTextElement.appendChild(span);
+            });
+
+            // Contador de reintentos (opcional)
+            let retryCount = localStorage.getItem('errorRetryCount') || 0;
+            retryCount++;
+            localStorage.setItem('errorRetryCount', retryCount);
+            
+            if (retryCount > 1) {
+                const retryCounter = document.getElementById('retryCounter');
+                retryCounter.textContent = `Esto te ha pasado ${retryCount} veces. ¡No te rindas! ❤️`;
+            }
+
+            // Detectar tipo de dispositivo
+            detectDeviceType();
+        });
+
+        function detectDeviceType() {
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            const isTablet = /iPad|Android(?!.*Mobile)/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                console.log('Dispositivo móvil detectado');
+            } else if (isTablet) {
+                console.log('Tablet detectada');
+            } else {
+                console.log('Computadora detectada');
+            }
+        }
+    </script>
+</body>
+</html>

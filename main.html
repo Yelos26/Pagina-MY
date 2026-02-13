@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Ti ❤️</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header con Frase -->
+        <header class="header">
+            <h1>✨ Para mi bella princesa ✨</h1>
+        </header>
+
+        <!-- Contenedor Principal -->
+        <div class="content-wrapper">
+            <!-- Carrusel de Imágenes (Centro-Izquierda) -->
+            <div class="carousel-section">
+                <div class="carousel">
+                    <button class="carousel-btn prev" onclick="changeSlide(-1)">&#10094;</button>
+                    
+                    <div class="carousel-images">
+                        <img src="Imagenes/Carrusel/carrusel_1.jpg" class="carousel-img active" alt="Foto 1">
+                        <img src="Imagenes/Carrusel/carrusel_2.jpg" class="carousel-img" alt="Foto 2">
+                        <img src="Imagenes/Carrusel/carrusel_3.jpg" class="carousel-img" alt="Foto 3">
+                    </div>
+                    
+                    <button class="carousel-btn next" onclick="changeSlide(1)">&#10095;</button>
+                </div>
+                
+                <div class="carousel-dots">
+                    <span class="dot active" onclick="currentSlide(0)"></span>
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                </div>
+            </div>
+
+            <!-- Menú de Proyectos (Derecha) -->
+            <div class="projects-section">
+                <h2>Nuestros Momentos 💕</h2>
+                <div class="projects-box">
+                    <button class="project-btn" onclick="abrirCartas()">
+                        CARTAS - 💌
+                    </button>
+                    <button class="project-btn" onclick="goToProject('proyecto2')">
+                        NUESTRA GALERÍA -📷
+                    </button>
+                    <button class="project-btn" onclick="goToProject('proyecto3')">
+                        NUESTRAS CANCIONES - 🎵
+                    </button>
+                    <button class="project-btn" onclick="goToProject('proyecto4')">
+                        ⏰ Línea de Tiempo
+                    </button>
+                    <button class="project-btn" onclick="goToProject('proyecto5')">
+                        LAS RAZONES POR LAS QUE TE AMO - 💘
+                    </button>
+                    <button class="project-btn" onclick="goToProject('proyecto6')">
+                        PROMESAS - 🌟
+                    </button>
+                    <button class="project-btn" onclick="goToProject('proyecto7')">
+                        SORPRESA ESPECIAL - 🎁
+                    </button>
+                    <button class="project-btn" onclick="goToProject('proyecto8')">
+                        POEMAS PARA TI - 🌹
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
+<!-- ============================================ -->
+<!-- IMAGEN CON NUBE DE DIÁLOGO - MENSAJES VARIABLES -->
+<!-- ============================================ -->
+<div class="dialog-section">
+    <!-- Imagen en la parte inferior izquierda - SIN MODIFICACIONES -->
+    <div class="image-wrapper">
+        <img src="Imagenes/Yelos_normal.png" alt="Mi Amor ❤️" class="dialog-image">
+        <div class="image-badge">❤️</div>
+    </div>
+    
+    <!-- Nube de diálogo adaptable -->
+    <div class="dialog-bubble" id="dialogBubble">
+        <div class="bubble-arrow"></div>
+        <div class="bubble-content" id="bubbleContent">
+            <!-- El texto se cargará automáticamente -->
+        </div>
+        <div class="bubble-time" id="bubbleTime"></div>
+    </div>
+</div>
+
+    <script src="js/main.js"></script>
+    <script src="js/mensajes.js"></script>
+</body>
+</html>
