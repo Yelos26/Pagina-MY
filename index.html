@@ -2,14 +2,15 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Mi Amor ❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Para mi amor -T </title>
+    <link rel="icon" href="Imagenes/Yelos_normal.png" type="image/png">
+    <link rel="shortcut icon" href="Imagenes/Yelos_normal.png" type="image/png">
     <link rel="stylesheet" href="css/login.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="js/auth.js"></script>
 </head>
 <body>
-    <!-- Corazones flotantes decorativos -->
+    <!-- Corazones flotantes -->
     <div class="hearts-container">
         <div class="heart" style="left: 10%; animation-delay: 0s;">❤️</div>
         <div class="heart" style="left: 20%; animation-delay: 2s;">💕</div>
@@ -19,95 +20,61 @@
         <div class="heart" style="left: 90%; animation-delay: 5s;">💞</div>
     </div>
 
+    <!-- CONTENEDOR PRINCIPAL - LOGIN -->
     <div class="container">
         <div class="lock-icon">👑</div>
         <h1>PARA MI REINA</h1>
-        <p class="subtitle">"Donde el amor es profundo, los pequeños detalles se convierten en grandes momentos"</p>
+        <p class="subtitle">"Coloca la contraseña, es una fecha importante."</p>
         
+        <!-- CAMPO DE CONTRASEÑA -->
         <div class="input-group">
-            <input type="password" id="passwordInput" placeholder="Ingresa nuestra clave especial" autocomplete="off">
+            <input type="password" 
+                   id="passwordInput" 
+                   placeholder="" 
+                   autocomplete="off"
+                   pattern="[0-9]*"
+                   onfocus="this.removeAttribute('readonly')"
+                   readonly
+                   onblur="if(!this.value) this.setAttribute('readonly', true)">
         </div>
         
+        <!-- BOTÓN PRINCIPAL -->
         <div>
             <button onclick="checkPassword()">
-            <i class="fas fa-heart" style="margin-right: 10px;"></i>
-            Descubrir Sorpresa
+                <i class="fas fa-heart" style="margin-right: 10px;"></i>
+                Descubrir Sorpresa
             </button>
         </div>
         
+        <!-- MENSAJE DE ERROR -->
         <div class="error" id="errorMsg">
             <i class="fas fa-exclamation-circle"></i>
             Clave incorrecta, mi amor. Intenta de nuevo ❤️
         </div>
 
+        <!-- DECORACIÓN INFERIOR -->
         <div class="floral-decoration">
-            <div></div>
-            <h4>
-                ✨ Para mi hermosa princesa ✨
-            </h4>
+            <h4>✨ Para mi hermosa princesa ✨</h4>
         </div>
     </div>
 
-    
-
-<!-- ============================================ -->
-<!-- IMAGEN CON NUBE DE DIÁLOGO - MENSAJES VARIABLES -->
-<!-- ============================================ -->
-<div class="dialog-section">
-    <!-- Imagen en la parte inferior izquierda - SIN MODIFICACIONES -->
-    <div class="image-wrapper">
-        <img src="Imagenes/Yelos_normal.png" alt="Mi Amor ❤️" class="dialog-image">
-        <div class="image-badge">❤️</div>
-    </div>
-    
-    <!-- Nube de diálogo adaptable -->
-    <div class="dialog-bubble" id="dialogBubble">
-        <div class="bubble-arrow"></div>
-        <div class="bubble-content" id="bubbleContent">
-            <!-- El texto se cargará automáticamente -->
-        </div>
-        <div class="bubble-time" id="bubbleTime"></div>
-    </div>
-</div>
-
-<!-- BOTÓN ÚNICO - Para ocultar/mostrar comentarios (cambia de mensaje) -->
-<button class="message-toggle-btn" id="messageToggleBtn">
-    <i class="fas fa-comments"></i>
-    <span class="btn-tooltip">Cambiar mensaje</span>
-</button>
-
-<script src="js/login.js"></script>
-    
-<script src="js/mensajes.js"></script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('✅ Página cargada correctamente');
-        
-        // Crear más corazones
-        const heartsContainer = document.querySelector('.hearts-container');
-        if (heartsContainer) {
-            for (let i = 0; i < 10; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'heart';
-                heart.style.left = Math.random() * 100 + '%';
-                heart.style.animationDelay = Math.random() * 6 + 's';
-                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
-                heart.textContent = ['❤️', '💕', '💖', '💗', '💓', '💞'][Math.floor(Math.random() * 6)];
-                heartsContainer.appendChild(heart);
+    <!-- SCRIPTS -->
+    <script src="js/login.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const heartsContainer = document.querySelector('.hearts-container');
+            if (heartsContainer && heartsContainer.children.length < 8) {
+                for (let i = 0; i < 6; i++) {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.animationDelay = Math.random() * 6 + 's';
+                    heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                    heart.textContent = ['❤️', '💕', '💖', '💗', '💓', '💞'][Math.floor(Math.random() * 6)];
+                    heartsContainer.appendChild(heart);
+                }
             }
-        }
-        
-        // Efecto de brillo en el título
-        const title = document.querySelector('h1');
-        if (title) {
-            setInterval(() => {
-                title.classList.toggle('glow-text');
-            }, 3000);
-        }
-    });
-</script>
-    
-
+        });
+    </script>
 </body>
 </html>

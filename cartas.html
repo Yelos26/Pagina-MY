@@ -2,11 +2,31 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Cartas de Amor 💌</title>
+    
+    <!-- FAVICON -->
+    <link rel="icon" href="Imagenes/Yelos_normal.png" type="image/png">
+    <link rel="shortcut icon" href="Imagenes/Yelos_normal.png" type="image/png">
+    
+    <!-- CSS -->
     <link rel="stylesheet" href="css/cartas.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AUTENTICACIÓN -->
+    <script src="js/auth.js"></script>
+    <script>
+        (async function() {
+            if (!await protegerPagina()) {
+                return;
+            }
+        })();
+    </script>
+
+    <!-- FUENTES PARA CARTA -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="petals-container"></div>
@@ -17,52 +37,172 @@
     </button>
 
     <div class="cartas-container">
+        <!-- HEADER -->
         <div class="cartas-header">
-            <h1>💌 Cartas de Amor</h1>
+            <h1>Cartas</h1>
             <p>Palabras escritas desde el corazón, solo para ti</p>
         </div>
 
-        <div class="selector-container">
-            <h2><i class="fas fa-envelope"></i> Selecciona una carta</h2>
-            <div class="cartas-list" id="cartasList"></div>
-            <div class="no-cartas" id="noCartasMessage" style="display: none;">
-                <div class="no-cartas-content">
-                    <i class="fas fa-heart-broken"></i>
-                    <h3>Aún no hay cartas escritas...</h3>
-                    <p>Pero pronto habrá palabras especiales para ti</p>
-                    <div class="heart-animation">❤️</div>
+        <!-- ============================================ -->
+        <!-- SECCIÓN 1A: CARTAS DE LA CARPETA (SERVIDOR) -->
+        <!-- ============================================ -->
+        <div class="seccion-cartas" id="seccionServidor">
+            <div class="seccion-titulo">
+                <i class="fas fa-database"></i>
+                <h2>Cartas del servidor</h2>
+                <span class="badge" id="cartasServidorCount">0</span>
+            </div>
+            
+            <div class="cartas-grid" id="cartasServidorList">
+                <!-- Las cartas del servidor se cargan aquí -->
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- SECCIÓN 1B: CARTAS DEL USUARIO (LOCALES) -->
+        <!-- ============================================ -->
+        <div class="seccion-cartas" id="seccionUsuario">
+            <div class="seccion-titulo">
+                <i class="fas fa-user"></i>
+                <h2>Mis cartas</h2>
+                <span class="badge" id="cartasUsuarioCount">0</span>
+            </div>
+            
+            <div class="cartas-grid" id="cartasUsuarioList">
+                <!-- Las cartas del usuario se cargan aquí -->
+            </div>
+            
+            <div class="no-cartas" id="noCartasUsuario" style="display: none;">
+                <i class="fas fa-heart-broken"></i>
+                <p>No has creado cartas todavía</p>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- SECCIÓN 2: ACCIONES (SUBIR/CREAR) -->
+        <!-- ============================================ -->
+        <div class="seccion-acciones">
+            <div class="acciones-grid">
+                <!-- BOTÓN SUBIR ARCHIVO -->
+                <div class="accion-card" id="subirCard">
+                    <div class="accion-icono">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>Subir archivo</h3>
+                    <p class="accion-desc">Selecciona un archivo .txt desde tu dispositivo</p>
+                    <input type="file" id="subirArchivo" accept=".txt" style="display: none;">
+                    <button class="accion-btn" id="btnSubir">
+                        <i class="fas fa-folder-open"></i> Seleccionar archivo
+                    </button>
+                    <div id="estadoSubida" class="estado-mensaje"></div>
+                </div>
+
+                <!-- BOTÓN CREAR CARTA -->
+                <div class="accion-card" id="crearCard">
+                    <div class="accion-icono">
+                        <i class="fas fa-pen-fancy"></i>
+                    </div>
+                    <h3>Crear nueva carta</h3>
+                    <p class="accion-desc">Escribe tu carta y tendrás vista previa</p>
+                    
+                    <textarea id="textoCarta" class="texto-crear" 
+                        placeholder="Escribe aquí tu carta de amor..."></textarea>
+                    
+                    <div class="accion-botones" style="grid-template-columns: 1fr 1fr 1fr;">
+                        <button class="accion-btn secundario" id="btnVistaPrevia">
+                            <i class="fas fa-eye"></i> Vista
+                        </button>
+                        <button class="accion-btn" id="btnGuardarLocal">
+                            <i class="fas fa-save"></i> Local
+                        </button>
+                        <button class="accion-btn" id="btnGuardarGitHub">
+                            <i class="fab fa-github"></i> GitHub
+                        </button>
+                    </div>
+                    
+                    <div id="estadoCrear" class="estado-mensaje"></div>
                 </div>
             </div>
         </div>
 
-        <div class="carta-visualizador" id="cartaVisualizador" style="display: none;">
-            <div class="carta-papel">
-                <div class="carta-decoracion top-left">💌</div>
-                <div class="carta-decoracion bottom-right">❤️</div>
-                
-                <h3 id="cartaTitulo" class="carta-titulo"></h3>
-                <div class="carta-contenido" id="cartaContenido"></div>
-                
-                <div class="carta-firma">
-                    Con todo mi amor <br>
-                    <span class="firma-corazon">❤️</span>
-                </div>
+        <!-- ============================================ -->
+<!-- SECCIÓN 3: VISOR DE CARTA - MEJORADO -->
+<!-- ============================================ -->
+<div class="seccion-visualizador" id="cartaVisualizador" style="display: none;">
+    <!-- Título centrado sin emoticono -->
+    <h3 id="cartaTitulo" class="visor-titulo"></h3>
+    
+    <!-- Fecha a la derecha (se llena con JS) -->
+    <div class="visor-fecha" id="cartaFecha"></div>
 
-                <div class="paginacion-control" id="paginacionControl">
-                    <button class="page-btn" id="prevPageBtn">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <div class="page-info">
-                        <span id="paginaActual">1</span> / <span id="totalPaginas">1</span>
-                    </div>
-                    <button class="page-btn" id="nextPageBtn">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
+    <!-- Contenido de la carta -->
+    <div class="visor-contenido" id="cartaContenido"></div>
+
+    <!-- Firma -->
+    <div class="visor-firma">
+        <span class="firma-letra">-Y</span>
+    </div>
+
+    <!-- Paginación -->
+    <div class="visor-paginacion" id="paginacionControl">
+        <button class="visor-btn" id="prevPageBtn">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <span class="visor-page-info" id="paginaActual">1</span>
+        <span class="visor-page-sep">/</span>
+        <span class="visor-page-info" id="totalPaginas">1</span>
+        <button class="visor-btn" id="nextPageBtn">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+</div>
+
+    </div>
+
+    <script src="js/cartas.js"></script>
+
+    <!-- MODAL PARA CONTRASEÑA DE GITHUB -->
+    <div class="modal" id="githubModal">
+        <div class="modal-contenido">
+            <div class="modal-header">
+                <h3><i class="fab fa-github"></i> Guardar en GitHub</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Ingresa la contraseña especial para guardar en el repositorio:</p>
+                <input type="password" id="githubPassword" placeholder="Contraseña de GitHub" class="modal-input">
+                <div class="modal-opciones">
+                    <label>
+                        <input type="checkbox" id="guardarComoNuevo" checked> Guardar como nuevo archivo
+                    </label>
                 </div>
+                <div id="modalError" class="modal-error"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn cancelar" id="cancelarModal">Cancelar</button>
+                <button class="modal-btn confirmar" id="confirmarGuardar">Guardar en GitHub</button>
             </div>
         </div>
     </div>
 
-    <script src="js/cartas.js"></script>
+    <!-- MODAL PARA PONER NOMBRE A LA CARTA -->
+<div class="modal" id="nombreModal">
+    <div class="modal-contenido" style="max-width: 400px;">
+        <div class="modal-header">
+            <h3><i class="fas fa-pen"></i> Nombre de la carta</h3>
+            <button class="modal-close" id="closeNombreModal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p>Escribe un nombre para esta carta:</p>
+            <input type="text" id="nombreCartaInput" class="modal-input" 
+                   placeholder="Ej: Mi carta de amor" value="Mi carta">
+            <div id="nombreModalError" class="modal-error"></div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-btn cancelar" id="cancelarNombreModal">Cancelar</button>
+            <button class="modal-btn confirmar" id="confirmarNombreModal">Guardar</button>
+        </div>
+    </div>
+</div>
 </body>
 </html>

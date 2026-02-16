@@ -1,10 +1,9 @@
 // ============================================
-// SISTEMA DE MENSAJES VARIABLES - VERSIÓN SIMPLE
+// SISTEMA DE MENSAJES AUTOMÁTICOS - SIN BOTÓN
 // ============================================
 
 class SistemaMensajes {
     constructor() {
-        // Mensajes románticos predefinidos
         this.mensajes = [
             "¡Hola mi amor! ❤️",
             "¿Cómo estás hoy? 💕",
@@ -28,33 +27,20 @@ class SistemaMensajes {
     }
     
     init() {
-        console.log('🎯 Sistema de mensajes iniciado');
-        
-        // MOSTRAR MENSAJE INMEDIATAMENTE
         this.mostrarMensajeInicial();
         
-        // Configurar botón de cambiar mensaje
-        const toggleBtn = document.getElementById('messageToggleBtn');
-        if (toggleBtn) {
-            toggleBtn.addEventListener('click', () => {
-                this.cambiarMensaje();
-            });
-            console.log('✅ Botón de mensajes configurado');
-        } else {
-            console.error('❌ No se encontró el botón messageToggleBtn');
-        }
+        // ✅ ELIMINADO: toggleBtn - AHORA SOLO CAMBIA AUTOMÁTICAMENTE
         
-        // Cambiar mensaje cada 15 segundos
+        // Cambiar mensaje cada 20 segundos
         setInterval(() => {
             this.cambiarMensaje();
-        }, 15000);
+        }, 20000);
     }
     
     mostrarMensajeInicial() {
         this.indiceActual = Math.floor(Math.random() * this.mensajes.length);
         const mensaje = this.mensajes[this.indiceActual];
         this.actualizarBurbuja(mensaje);
-        console.log('💬 Mensaje inicial:', mensaje);
     }
     
     cambiarMensaje() {
@@ -62,7 +48,6 @@ class SistemaMensajes {
         const mensaje = this.mensajes[this.indiceActual];
         this.actualizarBurbuja(mensaje);
         this.animarBurbuja();
-        console.log('🔄 Mensaje cambiado:', mensaje);
     }
     
     actualizarBurbuja(mensaje) {
@@ -99,8 +84,7 @@ class SistemaMensajes {
     }
 }
 
-// INICIALIZAR CUANDO EL DOM ESTÉ LISTO
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Iniciando sistema de mensajes...');
+// Iniciar automáticamente
+document.addEventListener('DOMContentLoaded', () => {
     window.sistemaMensajes = new SistemaMensajes();
 });

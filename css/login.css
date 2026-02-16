@@ -1,3 +1,31 @@
+html, body {
+    height: 100%;
+    overflow: hidden;  /* ESTO ES SUFICIENTE */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* El resto de tu CSS existente */
+    font-family: 'Playfair Display', serif;
+    background: linear-gradient(135deg, #1a0c0c 0%, #2d1a1a 50%, #1f1212 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* overflow: hidden ya está heredado de html,body */
+}
+
+/* Para asegurar en móviles */
+@media (max-width: 768px) {
+    html, body {
+        overflow: hidden;
+        position: fixed;  /* Extra seguro para iOS */
+        width: 100%;
+        height: 100%;
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,35 +34,38 @@
 
 body {
     font-family: 'Playfair Display', serif;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: linear-gradient(135deg, #1a0c0c 0%, #2d1a1a 50%, #1f1212 100%);
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
-/* Fondo decorativo con corazones */
+/* Fondo con textura de terciopelo oscuro */
 body::before {
     content: '';
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     background-image: 
-        radial-gradient(circle at 20% 80%, rgba(255, 182, 193, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(219, 112, 147, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(255, 105, 180, 0.1) 0%, transparent 50%);
+        radial-gradient(circle at 20% 30%, rgba(139, 0, 0, 0.15) 0%, transparent 45%),
+        radial-gradient(circle at 80% 70%, rgba(92, 51, 51, 0.2) 0%, transparent 45%),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 6px);
     z-index: -1;
+    top: 0;
+    left: 0;
 }
 
-/* Corazones flotantes animados */
+/* Corazones en tonos rojo oscuro */
 .heart {
     position: absolute;
-    color: rgba(255, 182, 193, 0.3);
-    font-size: 24px;
-    animation: float 15s infinite linear;
+    color: rgba(139, 58, 58, 0.2);
+    font-size: 22px;
+    animation: float 20s infinite linear;
     z-index: -1;
 }
 
@@ -43,11 +74,11 @@ body::before {
         transform: translateY(100vh) rotate(0deg);
         opacity: 0;
     }
-    10% {
-        opacity: 0.5;
+    15% {
+        opacity: 0.2;
     }
-    90% {
-        opacity: 0.5;
+    85% {
+        opacity: 0.2;
     }
     100% {
         transform: translateY(-100px) rotate(360deg);
@@ -55,157 +86,195 @@ body::before {
     }
 }
 
+/* ============================================ */
+/* CONTENEDOR CENTRAL - OSCURO Y ELEGANTE */
+/* ============================================ */
+
 .container {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 50px 40px;
-    border-radius: 25px;
+    background: rgba(26, 15, 15, 0.92);
+    backdrop-filter: blur(12px);
+    padding: 40px 35px;
+    border-radius: 30px 30px 30px 8px;
     box-shadow: 
-        0 20px 60px rgba(0, 0, 0, 0.1),
-        0 0 0 1px rgba(255, 255, 255, 0.8) inset;
-    max-width: 450px;
+        0 25px 50px -12px rgba(0, 0, 0, 0.6),
+        0 1px 0 0 rgba(180, 130, 130, 0.2) inset,
+        0 0 0 1px rgba(160, 100, 100, 0.15);
+    max-width: 460px;
     width: 100%;
     text-align: center;
-    animation: fadeInUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: fadeIn 0.7s ease;
+    margin: 20px auto;
+    z-index: 10;
+    border: 1px solid rgba(180, 120, 120, 0.2);
     position: relative;
     overflow: hidden;
 }
 
+/* Borde superior sutil */
 .container::before {
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
-    height: 5px;
+    left: 10%;
+    width: 80%;
+    height: 2px;
     background: linear-gradient(90deg, 
-        #ffb6c1 0%, 
-        #ff69b4 25%, 
-        #db7093 50%, 
-        #ff69b4 75%, 
-        #ffb6c1 100%);
-    border-radius: 25px 25px 0 0;
+        transparent,
+        rgba(200, 150, 150, 0.4),
+        rgba(220, 180, 180, 0.5),
+        rgba(200, 150, 150, 0.4),
+        transparent);
+    border-radius: 2px;
 }
 
-@keyframes fadeInUp {
+/* Detalle de esquina minimalista */
+.container::after {
+    content: '✦';
+    position: absolute;
+    bottom: 12px;
+    right: 18px;
+    font-size: 18px;
+    color: rgba(180, 130, 130, 0.2);
+}
+
+@keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(30px) scale(0.95);
+        transform: translateY(20px);
     }
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0);
     }
 }
 
+/* CORONA - MÁS PEQUEÑA Y ESTABLE */
 .lock-icon {
-    font-size: 80px;
-    margin-bottom: 25px;
-    color: #db7093;
-    animation: heartbeat 2s infinite;
-    text-shadow: 0 5px 15px rgba(219, 112, 147, 0.3);
-    position: relative;
+    font-size: 55px;
+    margin-bottom: 15px;
+    color: #d4af37;
+    filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.3));
+    line-height: 1;
     display: inline-block;
-}
-
-.lock-icon::after {
-    content: '❤️';
-    position: absolute;
-    top: -15px;
-    right: -15px;
-    font-size: 30px;
-    animation: pulse 1.5s infinite;
-}
-
-@keyframes heartbeat {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 0.8; }
-    50% { transform: scale(1.2); opacity: 1; }
+    transform: none; /* Sin animación de pulso */
 }
 
 h1 {
-    color: #5d3954;
-    margin-bottom: 15px;
+    color: #e6d5d5;
+    margin-bottom: 12px;
     font-size: 32px;
     font-weight: 600;
-    letter-spacing: 0.5px;
-    /*background: linear-gradient(45deg, #5d3954, #8a4b7c);*/
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #e6c3c3, #c49a9a);
     -webkit-background-clip: text;
     background-clip: text;
-    /*-webkit-text-fill-color: transparent;*/
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 12px;
+}
+
+/* Línea decorativa bajo el título */
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(180, 130, 130, 0.5), rgba(212, 175, 55, 0.3), rgba(180, 130, 130, 0.5), transparent);
 }
 
 .subtitle {
-    color: #8a7b8d;
-    font-size: 18px;
-    margin-bottom: 30px;
+    color: #b8a0a0;
+    font-size: 16px;
+    margin-bottom: 35px;
     line-height: 1.6;
+    padding: 0 12px;
+    font-style: italic;
     font-weight: 300;
+    border-left: 1px solid rgba(180, 130, 130, 0.4);
+    border-right: 1px solid rgba(180, 130, 130, 0.4);
+    display: inline-block;
 }
 
+/* ============================================ */
+/* INPUT GROUP - OSCURO */
+/* ============================================ */
+
 .input-group {
-    margin-bottom: 25px;
+    margin-bottom: 28px;
     position: relative;
+    width: 100%;
 }
 
 .input-group::before {
-    content: '🔐';
+    content: '✧';
     position: absolute;
-    left: 20px;
+    left: 18px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 18px;
-    color: #db7093;
+    font-size: 20px;
+    color: #d4af37;
     z-index: 1;
+    opacity: 0.6;
 }
 
 input[type="password"] {
     width: 100%;
-    padding: 18px 20px 18px 50px;
-    border: 2px solid #e8e4e9;
-    border-radius: 15px;
-    font-size: 16px;
+    padding: 16px 20px 16px 48px;
+    border: 1px solid #4d2e2e;
+    border-radius: 40px;
+    font-size: 17px;
     font-family: 'Segoe UI', sans-serif;
     transition: all 0.3s ease;
     outline: none;
-    background: #f9f7fa;
-    color: #5d3954;
-    letter-spacing: 1px;
+    background: #241717;
+    color: #e6d5d5;
+    letter-spacing: 3px;
+    -webkit-appearance: none;
+    appearance: none;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 input[type="password"]::placeholder {
-    color: #b8a9c3;
+    color: #6d4f4f;
     letter-spacing: normal;
+    font-style: italic;
 }
 
 input[type="password"]:focus {
-    border-color: #db7093;
-    box-shadow: 0 0 0 4px rgba(219, 112, 147, 0.15);
-    background: white;
-    transform: translateY(-2px);
+    border-color: #b8860b;
+    box-shadow: 0 0 0 4px rgba(184, 134, 11, 0.1), inset 0 2px 5px rgba(0, 0, 0, 0.3);
+    background: #2d1c1c;
+    transform: none; /* Sin escala */
 }
+
+/* ============================================ */
+/* BOTÓN PRINCIPAL - SIN MOVIMIENTO EXCESIVO */
+/* ============================================ */
 
 button {
     width: 100%;
-    padding: 18px;
-    background: linear-gradient(135deg, #ffb6c1 0%, #db7093 100%);
-    color: white;
-    border: none;
-    border-radius: 15px;
-    font-size: 18px;
+    padding: 16px 25px;
+    background: linear-gradient(135deg, #4d2e2e 0%, #3d2323 100%);
+    color: #e6d5d5;
+    border: 1px solid #b8860b;
+    border-radius: 40px;
+    font-size: 19px;
     font-weight: 600;
     font-family: 'Playfair Display', serif;
     cursor: pointer;
     transition: all 0.3s ease;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    box-shadow: 0 8px 16px -6px rgba(0, 0, 0, 0.5);
     position: relative;
     overflow: hidden;
-    letter-spacing: 1px;
 }
 
+/* Efecto de brillo sutil */
 button::before {
     content: '';
     position: absolute;
@@ -213,8 +282,8 @@ button::before {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.5s ease;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.6s ease;
 }
 
 button:hover::before {
@@ -222,123 +291,361 @@ button:hover::before {
 }
 
 button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 30px rgba(219, 112, 147, 0.3);
-    background: linear-gradient(135deg, #db7093 0%, #ff69b4 100%);
+    background: linear-gradient(135deg, #5a3838 0%, #482b2b 100%);
+    border-color: #d4af37;
+    box-shadow: 0 10px 20px -6px rgba(0, 0, 0, 0.6);
+    letter-spacing: 2px;
 }
 
 button:active {
-    transform: translateY(-1px);
+    transform: translateY(1px);
+    box-shadow: 0 5px 12px -4px rgba(0, 0, 0, 0.5);
 }
 
+/* Mensaje de error */
 .error {
-    color: #e74c3c;
-    margin-top: 20px;
+    color: #ffb3b3;
+    margin-top: 22px;
     font-size: 14px;
     display: none;
-    animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-    background: rgba(231, 76, 60, 0.1);
-    padding: 12px 20px;
-    border-radius: 10px;
-    border-left: 4px solid #e74c3c;
-}
-
-@keyframes shake {
-    10%, 90% { transform: translateX(-1px); }
-    20%, 80% { transform: translateX(2px); }
-    30%, 50%, 70% { transform: translateX(-4px); }
-    40%, 60% { transform: translateX(4px); }
+    animation: gentleShake 0.4s ease;
+    background: rgba(77, 46, 46, 0.6);
+    padding: 10px 18px;
+    border-radius: 30px;
+    border-left: 3px solid #b33b4c;
+    font-weight: 400;
+    backdrop-filter: blur(5px);
 }
 
 .error.show {
     display: block;
 }
 
-/* Efecto de brillo */
-.glow-text {
-    animation: glow 2s ease-in-out infinite alternate;
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff69b4, 0 0 20px #ff69b4;
+@keyframes gentleShake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-2px); }
+    40% { transform: translateX(2px); }
+    60% { transform: translateX(-1px); }
 }
 
-@keyframes glow {
-    from {
-        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff69b4, 0 0 20px #ff69b4;
-    }
-    to {
-        text-shadow: 0 0 10px #fff, 0 0 20px #ff69b4, 0 0 30px #ff69b4, 0 0 40px #ff69b4;
-    }
-}
-
-/* Decoración floral */
-.floral-decoration {
-    position: center;
-    bottom: 20px;
-    width: 100%;
-    text-align: center;
-    color: #db7093;
-    font-size: 14px;
-    opacity: 0.7;
-}
-
-/* Responsive Design */
-@media (max-width: 480px) {
-    .container {
-        padding: 40px 25px;
-        margin: 0 15px;
-    }
-    
-    h1 {
-        font-size: 26px;
-    }
-    
-    .subtitle {
-        font-size: 16px;
-    }
-    
-    .lock-icon {
-        font-size: 60px;
-    }
-    
-    input[type="password"] {
-        padding: 16px 16px 16px 45px;
-    }
-    
-    button {
-        padding: 16px;
-    }
-}
-
-/* Animación de entrada suave */
-@keyframes gentleEntry {
-    0% {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.container > * {
-    animation: gentleEntry 0.6s ease-out forwards;
-    animation-delay: calc(var(--i) * 0.1s);
-    opacity: 0;
-}
-
-/* Para dispositivos muy pequeños */
-@media (max-height: 600px) {
-    body {
-        padding: 10px;
-    }
-    
-    .container {
-        padding: 30px 25px;
-    }
+.floral-decoration h4 {
+    color: #b8a0a0;
+    margin-top: 22px;
+    font-size: 15px;
+    opacity: 0.8;
+    font-weight: 300;
+    border-top: 1px solid #3f2a2a;
+    padding-top: 16px;
+    letter-spacing: 1px;
 }
 
 /* ============================================ */
-/* IMAGEN CON NUBE DE DIÁLOGO - VERSIÓN CORREGIDA */
+/* CARRUSEL MEJORADO - IMÁGENES ADAPTABLES      */
+/* ============================================ */
+
+.carousel-section {
+    background: rgba(26, 15, 15, 0.92);
+    backdrop-filter: blur(12px);
+    padding: 25px;
+    border-radius: 20px 20px 20px 8px;
+    box-shadow: 0 15px 30px -8px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(184, 134, 11, 0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.carousel {
+    position: relative;
+    width: 500px;
+    height: 700px; /* MÁS LARGO */
+    overflow: hidden;
+    border-radius: 15px;
+    background: #2d1c1c; /* Color de relleno para cuando la imagen no cubre */
+    border: 1px solid #4d2e2e;
+    flex-shrink: 0;
+}
+
+@media (min-width: 1200px) {
+    .carousel {
+        height: 550px; /* Aún más largo en pantallas grandes */
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel {
+        height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel {
+        height: 300px;
+    }
+}
+
+.carousel-images {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #2d1c1c; /* Mismo color de fondo */
+}
+
+.carousel-img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    border-radius: 15px;
+    
+    /* IMPORTANTE: La imagen se adapta sin distorsionarse */
+    object-fit: cover; /* Cubre todo el espacio (puede recortar) */
+    /* Alternativas: */
+    /* object-fit: contain; (muestra la imagen completa con bordes) */
+    /* object-fit: fill; (distorsiona) - NO RECOMENDADO */
+    
+    background: #2d1c1c; /* Color de fondo mientras carga o si hay espacios */
+}
+
+/* Para imágenes que no cubren todo, se ve el fondo */
+.carousel-img.contain {
+    object-fit: contain;
+    background: #2d1c1c;
+}
+
+.carousel-img.active {
+    opacity: 1;
+}
+
+/* Controles del carrusel */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(26, 15, 15, 0.8);
+    backdrop-filter: blur(5px);
+    border: 1px solid #b8860b;
+    color: #e6d5d5;
+    width: 50px; /* Un poco más grandes */
+    height: 50px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.carousel-btn:hover {
+    background: #4d2e2e;
+    border-color: #d4af37;
+    color: #ffffff;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn.prev {
+    left: 15px;
+}
+
+.carousel-btn.next {
+    right: 15px;
+}
+
+/* Puntos indicadores */
+.carousel-dots {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #4d2e2e;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid #b8860b;
+}
+
+.dot.active {
+    background: #b8860b;
+    transform: scale(1.2);
+    box-shadow: 0 0 10px #b8860b;
+}
+
+/* ============================================ */
+/* BOTONES 3D CON EFECTO DE PROFUNDIDAD         */
+/* ============================================ */
+
+.projects-box {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+    min-height: 0;
+    perspective: 1000px; /* Para efecto 3D */
+}
+
+.project-btn {
+    width: 100%;
+    padding: 16px 20px;
+    margin-bottom: 15px;
+    background: #2d1c1c;
+    border: 1px solid #4d2e2e;
+    border-radius: 12px;
+    color: #e6d5d5;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    text-align: left;
+    box-shadow: 
+        0 5px 0 #1a0f0f,
+        0 8px 15px rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.5px;
+    transform: translateY(0);
+    z-index: 1;
+}
+
+/* Efecto de relieve */
+.project-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%);
+    border-radius: 12px;
+    z-index: -1;
+}
+
+/* Sombra interior para efecto hundido */
+.project-btn::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    border-radius: 10px;
+    background: transparent;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Hover: se levanta */
+.project-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 8px 0 #1a0f0f,
+        0 12px 25px rgba(184, 134, 11, 0.3);
+    border-color: #b8860b;
+    background: #3d2626;
+}
+
+/* Active: se hunde (como si estuviera detrás de algo) */
+.project-btn:active {
+    transform: translateY(5px);
+    box-shadow: 
+        0 2px 0 #1a0f0f,
+        0 5px 12px rgba(0, 0, 0, 0.4);
+    transition: all 0.1s ease;
+}
+
+.project-btn:active::after {
+    opacity: 1;
+}
+
+/* Efecto de brillo al pasar */
+.project-btn .shine {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(184, 134, 11, 0.2), transparent);
+    transition: left 0.5s ease;
+    pointer-events: none;
+}
+
+.project-btn:hover .shine {
+    left: 100%;
+}
+
+/* Efecto de seleccionado (simula que está detrás de un vidrio) */
+.project-btn.selected {
+    background: #3d2626;
+    border-color: #b8860b;
+    box-shadow: 
+        inset 0 2px 5px rgba(0,0,0,0.5),
+        0 5px 0 #1a0f0f;
+    transform: translateY(2px);
+    position: relative;
+}
+
+/* Efecto de "vidrio" delante */
+.project-btn.selected::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(184, 134, 11, 0.1);
+    backdrop-filter: blur(2px);
+    border-radius: 12px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Para dar efecto de capas */
+.projects-box {
+    position: relative;
+}
+
+.projects-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: linear-gradient(to bottom, rgba(26,15,15,0.8), transparent);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.projects-box::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: linear-gradient(to top, rgba(26,15,15,0.8), transparent);
+    z-index: 2;
+    pointer-events: none;
+}
+
+
+/* ============================================ */
+/* IMAGEN CON NUBE DE DIÁLOGO - VERSIÓN OSCURA */
 /* ============================================ */
 
 .dialog-section {
@@ -351,72 +658,102 @@ button:active {
     z-index: 1000;
     max-width: 80%;
     animation: slideInLeft 0.6s ease;
+    cursor: grab;
+    transition: left 0.2s ease, bottom 0.2s ease;
 }
 
-@keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+.dialog-section:active {
+    cursor: grabbing;
 }
 
-/* Contenedor de la imagen - SIN MODIFICACIONES */
+.dialog-section.bubble-hidden .dialog-bubble {
+    display: none;
+}
+
+/* Contenedor de la imagen */
 .image-wrapper {
     position: relative;
     width: 90px;
     height: 90px;
-    /*border-radius: 50%;*/
-    padding: 0;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
+    padding: 3px;
+    background: linear-gradient(135deg, #b8860b, #8b1e3f);
+    border-radius: 50%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    cursor: grab;
     transition: transform 0.3s ease;
     flex-shrink: 0;
 }
 
+.image-wrapper:active {
+    cursor: grabbing;
+}
+
 .image-wrapper:hover {
-    transform: scale(1.05);
+    transform: scale(1.08);
+    box-shadow: 0 15px 35px rgba(184, 134, 11, 0.4);
 }
 
 .dialog-image {
     width: 100%;
     height: 100%;
-    /*border-radius: 50%;*/
+    border-radius: 50%;
     object-fit: cover;
-    border: 3px solid white;
+    border: 3px solid #ffffff;
 }
 
 .image-badge {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    background: white;
+    bottom: 5px;
+    right: 5px;
+    background: #8b1e3f;
     border-radius: 50%;
-    width: 25px;
-    height: 25px;
+    width: 28px;
+    height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    border: 2px solid #ff69b4;
+    font-size: 14px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
+    border: 2px solid #b8860b;
+    color: #ffffff;
+    transition: all 0.3s ease;
 }
 
-/* NUBE DE DIÁLOGO ADAPTABLE */
+.image-wrapper:hover .image-badge {
+    transform: scale(1.1);
+    background: #b8860b;
+    border-color: #ffffff;
+}
+
+/* NUBE DE DIÁLOGO OSCURA */
 .dialog-bubble {
     position: relative;
-    background: white;
+    background: rgba(26, 15, 15, 0.98);
+    backdrop-filter: blur(8px);
     border-radius: 25px 25px 25px 5px;
     padding: 18px 22px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
     max-width: 350px;
     min-width: 150px;
     width: fit-content;
     animation: fadeInBubble 0.5s ease;
-    border: 1px solid rgba(255, 182, 193, 0.3);
+    border: 1px solid #b8860b;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.dialog-bubble::-webkit-scrollbar {
+    width: 5px;
+}
+
+.dialog-bubble::-webkit-scrollbar-track {
+    background: #2d1c1c;
+    border-radius: 10px;
+}
+
+.dialog-bubble::-webkit-scrollbar-thumb {
+    background: #b8860b;
+    border-radius: 10px;
 }
 
 .bubble-arrow {
@@ -427,104 +764,83 @@ button:active {
     height: 0;
     border-style: solid;
     border-width: 0 20px 20px 0;
-    border-color: transparent white transparent transparent;
+    border-color: transparent rgba(26, 15, 15, 0.98) transparent transparent;
+    filter: drop-shadow(-2px 2px 2px rgba(0, 0, 0, 0.3));
+    transition: left 0.3s ease, right 0.3s ease, transform 0.3s ease;
 }
 
 .bubble-content {
     font-family: 'Segoe UI', sans-serif;
-    color: #5d4a66;
+    color: #e6d5d5;
     font-size: 16px;
     line-height: 1.5;
     word-wrap: break-word;
     white-space: pre-wrap;
     font-weight: 500;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.bubble-content::-webkit-scrollbar {
+    width: 4px;
+}
+
+.bubble-content::-webkit-scrollbar-track {
+    background: #2d1c1c;
+    border-radius: 10px;
+}
+
+.bubble-content::-webkit-scrollbar-thumb {
+    background: #b8860b;
+    border-radius: 10px;
 }
 
 .bubble-time {
     font-size: 11px;
-    color: #b8a9c3;
+    color: #b8a0a0;
     margin-top: 10px;
     text-align: right;
     font-style: italic;
-    border-top: 1px dashed #ffb6c1;
+    border-top: 1px dashed #4d2e2e;
     padding-top: 8px;
 }
 
-/* BOTÓN ÚNICO - Cambiar mensajes */
-.message-toggle-btn {
-    position: fixed;
-    bottom: 150px;
-    left: 150px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #ff6b8b 0%, #ff4757 100%);
-    border: none;
-    color: white;
-    font-size: 22px;
-    cursor: pointer;
-    box-shadow: 0 5px 20px rgba(255, 107, 139, 0.4);
-    transition: all 0.3s ease;
-    z-index: 1001;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Cuando la imagen está a la derecha */
+.dialog-section.image-right {
+    flex-direction: row-reverse;
 }
 
-.message-toggle-btn:hover {
-    transform: scale(1.15) rotate(10deg);
-    box-shadow: 0 8px 25px rgba(255, 71, 87, 0.6);
+.dialog-section.image-right .bubble-arrow {
+    left: auto;
+    right: -12px;
+    transform: rotate(90deg);
 }
 
-.btn-tooltip {
-    position: absolute;
-    top: -40px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    white-space: nowrap;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    pointer-events: none;
+@keyframes fadeInBubble {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-.message-toggle-btn:hover .btn-tooltip {
-    opacity: 1;
-    visibility: visible;
-    top: -50px;
+.dialog-bubble.hiding {
+    animation: bubbleDisappear 0.2s ease forwards;
 }
 
-/* Modal para agregar mensajes */
-.message-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-}
-
-.message-modal.show {
-    display: flex;
-}
-
-.modal-container {
-    background: white;
-    width: 90%;
-    max-width: 450px;
-    border-radius: 25px;
-    padding: 30px;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
-    animation: slideUp 0.4s ease;
+@keyframes bubbleDisappear {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.8);
+    }
 }
 
 /* Responsive */
@@ -543,22 +859,12 @@ button:active {
         max-width: calc(100% - 90px);
         padding: 15px 18px;
     }
-    
-    .message-toggle-btn {
-        bottom: 130px;
-        left: 130px;
-        width: 45px;
-        height: 45px;
-        font-size: 20px;
-    }
 }
 
 @media (max-width: 480px) {
     .dialog-section {
         bottom: 15px;
         left: 15px;
-        flex-direction: column;
-        align-items: flex-start;
     }
     
     .image-wrapper {
@@ -569,31 +875,120 @@ button:active {
     .dialog-bubble {
         max-width: 100%;
         min-width: 200px;
-        margin-left: 20px;
+        margin-left: 15px;
     }
     
     .bubble-arrow {
-        bottom: auto;
-        top: -12px;
-        left: 30px;
-        border-width: 0 20px 20px 0;
-        transform: rotate(90deg);
+        bottom: 15px;
+        left: -10px;
+        border-width: 0 15px 15px 0;
     }
     
-    .message-toggle-btn {
-        bottom: 250px;
-        left: 30px;
+    .dialog-section.image-right .bubble-arrow {
+        right: -10px;
     }
 }
 
-@keyframes fadeInBubble {
+/* Responsive Design general */
+@media (max-width: 1200px) {
+    .content-wrapper {
+        grid-template-columns: 1.5fr 1fr;
+        gap: 30px;
+    }
+    
+    .carousel {
+        height: 500px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .content-wrapper {
+        grid-template-columns: 1fr;
+    }
+    
+    .carousel {
+        height: 450px;
+    }
+    
+    .header h1 {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    
+    .header {
+        padding: 30px 20px;
+    }
+    
+    .header h1 {
+        font-size: 28px;
+    }
+    
+    .header p {
+        font-size: 18px;
+    }
+    
+    .carousel {
+        height: 350px;
+    }
+    
+    .carousel-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+    }
+    
+    .projects-section,
+    .carousel-section {
+        padding: 25px;
+    }
+    
+    .project-btn {
+        padding: 18px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 24px;
+    }
+    
+    .header p {
+        font-size: 16px;
+    }
+    
+    .header p::before,
+    .header p::after {
+        display: none;
+    }
+    
+    .carousel {
+        height: 280px;
+    }
+    
+    .projects-section h2 {
+        font-size: 24px;
+    }
+    
+    .project-btn {
+        padding: 15px;
+        font-size: 15px;
+    }
+}
+
+@keyframes slideInLeft {
     from {
         opacity: 0;
-        transform: scale(0.8);
+        transform: translateX(-50px);
     }
     to {
         opacity: 1;
-        transform: scale(1);
+        transform: translateX(0);
     }
 }
 
@@ -605,5 +1000,353 @@ button:active {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* ============================================ */
+/* AJUSTES PARA IMAGEN ARRASTRABLE - NUNCA SE SALE */
+/* ============================================ */
+
+.dialog-section {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+    z-index: 1000;
+    max-width: 90vw; /* Limitar ancho máximo */
+    animation: slideInLeft 0.6s ease;
+    cursor: grab;
+    transition: left 0.2s ease, bottom 0.2s ease;
+    will-change: left, bottom;
+}
+
+/* Cuando la burbuja está visible, aseguramos que no se salga */
+.dialog-section:not(.bubble-hidden) {
+    max-width: calc(100vw - 40px);
+}
+
+/* Para cuando está a la derecha */
+.dialog-section.image-right:not(.bubble-hidden) {
+    justify-content: flex-end;
+}
+
+/* La burbuja nunca debe salirse */
+.dialog-bubble {
+    max-width: min(350px, 60vw); /* Responsive */
+    word-break: break-word;
+}
+
+/* En móvil, ajustes especiales */
+@media (max-width: 768px) {
+    .dialog-section:not(.bubble-hidden) {
+        max-width: calc(100vw - 30px);
+    }
+    
+    .dialog-bubble {
+        max-width: min(300px, 50vw);
+    }
+}
+
+@media (max-width: 480px) {
+    .dialog-section:not(.bubble-hidden) {
+        max-width: calc(100vw - 20px);
+    }
+    
+    .dialog-bubble {
+        max-width: min(250px, 45vw);
+    }
+}
+
+/* ============================================ */
+/* IMAGEN Y NUBE - INDEPENDIENTES */
+/* ============================================ */
+
+.dialog-section {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Permite clicks a través del contenedor */
+    z-index: 1000;
+}
+
+.image-wrapper {
+    position: fixed !important; /* La imagen se mueve independiente */
+    width: 90px;
+    height: 90px;
+    padding: 3px;
+    background: linear-gradient(135deg, #b8860b, #8b1e3f);
+    border-radius: 50%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    cursor: grab;
+    transition: transform 0.3s ease;
+    z-index: 1002;
+    pointer-events: auto; /* La imagen es clickeable */
+}
+
+.image-wrapper:active {
+    cursor: grabbing;
+}
+
+.image-wrapper:hover {
+    transform: scale(1.08);
+    box-shadow: 0 15px 35px rgba(184, 134, 11, 0.4);
+}
+
+.dialog-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ffffff;
+}
+
+.image-badge {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: #8b1e3f;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
+    border: 2px solid #b8860b;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.image-wrapper:hover .image-badge {
+    transform: scale(1.1);
+    background: #b8860b;
+    border-color: #ffffff;
+}
+
+/* NUBE INDEPENDIENTE - SE POSICIONA SIN MOVER LA IMAGEN */
+.dialog-bubble {
+    position: fixed !important;
+    background: rgba(26, 15, 15, 0.98);
+    backdrop-filter: blur(8px);
+    border-radius: 25px 25px 25px 5px;
+    padding: 18px 22px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    max-width: 350px;
+    min-width: 150px;
+    width: fit-content;
+    max-width: min(350px, 80vw); /* Límite responsivo */
+    border: 1px solid #b8860b;
+    z-index: 1001;
+    pointer-events: auto;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    
+    /* IMPORTANTE: Eliminar scroll horizontal */
+    overflow-x: hidden;
+    overflow-y: auto; /* Solo scroll vertical si es necesario */
+    word-wrap: break-word; /* Romper palabras largas */
+    word-break: break-word; /* Forzar salto de línea */
+    hyphens: auto; /* Separar sílabas si es necesario */
+}
+
+.dialog-bubble.hiding {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+}
+
+.dialog-section.bubble-hidden .dialog-bubble {
+    display: none;
+}
+
+.bubble-arrow {
+    position: absolute;
+    bottom: 15px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 20px 20px 0;
+    border-color: transparent rgba(26, 15, 15, 0.98) transparent transparent;
+    filter: drop-shadow(-2px 2px 2px rgba(0, 0, 0, 0.3));
+    transition: left 0.3s ease, right 0.3s ease, transform 0.3s ease;
+}
+
+.bubble-content {
+    font-family: 'Segoe UI', sans-serif;
+    color: #e6d5d5;
+    font-size: 16px;
+    line-height: 1.5;
+    white-space: pre-wrap; /* Respetar saltos de línea */
+    font-weight: 500;
+    max-height: 300px;
+    overflow-y: auto; /* Solo scroll vertical */
+    overflow-x: hidden; /* NO scroll horizontal */
+    padding-right: 8px;
+    width: 100%;
+    
+    /* Forzar ajuste de texto */
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+}
+
+.bubble-content span, 
+.bubble-content p {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+/* Scrollbar personalizada - SOLO vertical */
+.bubble-content::-webkit-scrollbar {
+    width: 4px;
+    height: 0; /* Eliminar scroll horizontal */
+}
+
+.bubble-content::-webkit-scrollbar-track {
+    background: #2d1c1c;
+    border-radius: 10px;
+}
+
+.bubble-content::-webkit-scrollbar-thumb {
+    background: #b8860b;
+    border-radius: 10px;
+}
+
+/* Eliminar cualquier scroll horizontal del sistema */
+.dialog-bubble {
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #b8860b #2d1c1c;
+    overflow-x: hidden;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .dialog-bubble {
+        max-width: min(300px, 75vw);
+        padding: 15px 18px;
+    }
+    
+    .bubble-content {
+        font-size: 15px;
+        max-height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dialog-bubble {
+        max-width: min(250px, 70vw);
+        padding: 12px 15px;
+    }
+    
+    .bubble-content {
+        font-size: 14px;
+        max-height: 200px;
+    }
+}
+
+/* Asegurar que la flecha no cause desbordamiento */
+.bubble-arrow {
+    position: absolute;
+    bottom: 15px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 20px 20px 0;
+    border-color: transparent rgba(26, 15, 15, 0.98) transparent transparent;
+    filter: drop-shadow(-2px 2px 2px rgba(0, 0, 0, 0.3));
+    transition: left 0.3s ease, right 0.3s ease, transform 0.3s ease;
+    z-index: 2;
+}
+
+/* ============================================ */
+/* MEJORAS CRÍTICAS PARA MÓVIL*/
+/* ============================================ */
+
+@media (max-width: 768px) {
+    .image-wrapper {
+        width: 65px;
+        height: 65px;
+        touch-action: none; /* Importante para arrastre */
+        -webkit-tap-highlight-color: transparent;
+        cursor: pointer;
+        z-index: 10000; /* Asegurar que esté sobre todo */
+    }
+    
+    /* Área de toque más grande */
+    .image-wrapper::after {
+        content: '';
+        position: absolute;
+        top: -15px;
+        left: -15px;
+        right: -15px;
+        bottom: -15px;
+        background: transparent;
+        border-radius: 50%;
+        z-index: -1;
+    }
+    
+    .dialog-bubble {
+        max-width: min(260px, 70vw);
+        padding: 12px 15px;
+        z-index: 9999;
+        pointer-events: auto;
+        touch-action: pan-y; /* Permitir scroll dentro de la nube */
+        -webkit-overflow-scrolling: touch;
+        font-size: 15px;
+    }
+    
+    /* Para debugging - quitar después */
+    .image-wrapper {
+        border: 2px solid red; /* Temporal para ver área clickeable */
+    }
+}
+
+/* Z-index altos para asegurar click */
+.image-wrapper {
+    z-index: 10001;
+    position: fixed;
+}
+
+.dialog-bubble {
+    z-index: 10000;
+}
+
+@media (max-width: 768px) {
+    .image-wrapper {
+        width: 65px;
+        height: 65px;
+        touch-action: none; /* Mejor control táctil */
+        -webkit-tap-highlight-color: transparent; /* Quitar flash al tocar */
+    }
+    
+    .dialog-bubble {
+        max-width: min(280px, 70vw);
+        padding: 12px 16px;
+        touch-action: pan-y; /* Permitir scroll vertical dentro de la nube */
+        -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+    }
+    
+    .bubble-content {
+        font-size: 15px;
+        max-height: 250px;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Área de click más grande */
+    .image-wrapper::after {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        background: transparent;
+        border-radius: 50%;
     }
 }

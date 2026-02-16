@@ -1,84 +1,148 @@
 // ============================================
-// LOGIN - VERSIÓN SIMPLIFICADA SIN ERROR.JS
+//                  LOGIN
 // ============================================
 
-const PASSWORD = "25062025"; // Tu fecha especial
+// Verificar que auth.js esté cargado
+if (typeof iniciarSesion === 'undefined') {
+    console.error('❌ ERROR: auth.js no está cargado');
+}
 
-function checkPassword() {
+// ============================================
+// PREVENIR SCROLL AUTOMÁTICO EN MÓVIL
+// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+    const passwordInput = document.getElementById('passwordInput');
+    
+    if (passwordInput) {
+        // Eliminar readonly al hacer clic
+        passwordInput.addEventListener('click', function() {
+            this.removeAttribute('readonly');
+        });
+        
+        // Eliminar readonly al tocar en móvil
+        passwordInput.addEventListener('touchstart', function() {
+            this.removeAttribute('readonly');
+        });
+        
+        // Prevenir scroll automático
+        passwordInput.addEventListener('focus', function(e) {
+            // Guardar posición actual
+            const scrollY = window.scrollY;
+            
+            // Permitir foco pero prevenir scroll
+            setTimeout(() => {
+                window.scrollTo(0, scrollY);
+            }, 0);
+        });
+        
+        // Solo permitir números
+        passwordInput.addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '');
+            
+            // Mantener posición del scroll
+            const scrollY = window.scrollY;
+            setTimeout(() => {
+                window.scrollTo(0, scrollY);
+            }, 0);
+        });
+        
+        // Restaurar readonly cuando pierde foco (opcional)
+        passwordInput.addEventListener('blur', function() {
+            if (!this.value) {
+                this.setAttribute('readonly', true);
+            }
+        });
+    }
+    
+    // ============================================
+    // DETECCIÓN DE CONEXIÓN
+    // ============================================
+    if (!navigator.onLine) {
+        const errorMsg = document.getElementById('errorMsg');
+        if (errorMsg) {
+            errorMsg.textContent = 'Estás offline. Pero puedes seguir intentando';
+            errorMsg.classList.add('show');
+        }
+    }
+});
+
+// ============================================
+// FUNCIÓN PRINCIPAL DE LOGIN
+// ============================================
+async function checkPassword() {
     const input = document.getElementById('passwordInput');
     const errorMsg = document.getElementById('errorMsg');
     const button = document.querySelector('button');
     
-    // Validación básica
+    // Quitar readonly temporalmente
+    input.removeAttribute('readonly');
+    
+    // Validar que no esté vacío
     if (!input.value.trim()) {
-        errorMsg.textContent = '❌ Por favor, ingresa nuestra fecha especial ❤️';
+        errorMsg.textContent = '❌ Esa no es ';
         errorMsg.classList.add('show');
         input.focus();
         return;
     }
     
-    // Efecto de clic en el botón
-    button.style.transform = 'scale(0.98)';
-    setTimeout(() => {
-        button.style.transform = '';
-    }, 150);
+    // Validar que solo sean números
+    if (!/^\d+$/.test(input.value)) {
+        errorMsg.textContent = '❌ Solo números permitidos (DDMMAAAA) ❤️';
+        errorMsg.classList.add('show');
+        input.value = '';
+        input.focus();
+        
+        setTimeout(() => {
+            errorMsg.classList.remove('show');
+        }, 3000);
+        return;
+    }
     
-    if (input.value === PASSWORD) {
-        // ✅ Éxito
+    // Efecto visual mínimo
+    button.style.opacity = '0.9';
+    setTimeout(() => {
+        button.style.opacity = '1';
+    }, 100);
+    
+    // Guardar scroll actual
+    const scrollY = window.scrollY;
+    
+    // Verificar contraseña
+    const exito = await iniciarSesion(input.value);
+    
+    // Restaurar scroll
+    window.scrollTo(0, scrollY);
+    
+    if (exito) {
+        // Correcto
         button.innerHTML = '<i class="fas fa-heart"></i> ¡Correcto! Entrando...';
         button.style.background = 'linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%)';
-        
-        // Animación de salida
-        document.querySelector('.container').style.animation = 'fadeOut 0.8s ease forwards';
         
         setTimeout(() => {
             window.location.href = 'main.html';
         }, 800);
     } else {
-        // ❌ Error de contraseña
+        // Incorrecto
+        button.innerHTML = '<i class="fas fa-heart"></i> Descubrir Sorpresa';
+        button.style.background = 'linear-gradient(135deg, #ffb6c1 0%, #db7093 100%)';
+        
         errorMsg.textContent = '❌ Clave incorrecta, mi amor. Intenta de nuevo ❤️';
         errorMsg.classList.add('show');
         input.style.borderColor = '#e74c3c';
-        input.style.boxShadow = '0 0 0 4px rgba(231, 76, 60, 0.15)';
-        input.style.animation = 'shake 0.5s ease';
-        
-        // Contador de intentos fallidos
-        if (window.failedAttempts) {
-            window.failedAttempts++;
-        } else {
-            window.failedAttempts = 1;
-        }
-        
-        // Mensaje especial después de 3 intentos
-        if (window.failedAttempts >= 3) {
-            setTimeout(() => {
-                errorMsg.textContent = '💕 ¿Necesitas un recordatorio? Es nuestra fecha especial: 25/06/2025 💕';
-                errorMsg.classList.add('show');
-            }, 3100);
-        }
-        
-        // Restaurar estilos
-        setTimeout(() => {
-            input.style.animation = '';
-            input.value = '';
-            input.focus();
-        }, 500);
         
         setTimeout(() => {
             errorMsg.classList.remove('show');
             input.style.borderColor = '#e8e4e9';
-            input.style.boxShadow = 'none';
+            input.value = '';
+            input.focus();
         }, 3000);
     }
 }
 
-// ============================================
-// EVENT LISTENERS
-// ============================================
-
 // Enter para enviar
 document.getElementById('passwordInput').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
+        e.preventDefault(); // Prevenir comportamiento por defecto
         checkPassword();
     }
 });
@@ -89,52 +153,14 @@ document.getElementById('passwordInput').addEventListener('input', function() {
     if (errorMsg.classList.contains('show')) {
         errorMsg.classList.remove('show');
         this.style.borderColor = '#e8e4e9';
-        this.style.boxShadow = 'none';
     }
 });
 
-// ============================================
-// ANIMACIONES
-// ============================================
-
-// Añadir animación fadeOut al CSS
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes fadeOut {
-        from { opacity: 1; transform: scale(1); }
-        to { opacity: 0; transform: scale(0.9); }
-    }
-    
-    @keyframes shake {
-        0%, 100% { transform: translateX(0); }
-        25% { transform: translateX(-10px); }
-        75% { transform: translateX(10px); }
-    }
-`;
-document.head.appendChild(style);
-
-// ============================================
-// DETECCIÓN DE CONEXIÓN
-// ============================================
-
-// Verificar conexión al cargar
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('✅ Página de login cargada correctamente');
-    
-    if (!navigator.onLine) {
-        const errorMsg = document.getElementById('errorMsg');
-        if (errorMsg) {
-            errorMsg.textContent = '📡 Estás offline. Conéctate para ver la sorpresa ❤️';
-            errorMsg.classList.add('show');
-        }
-    }
-});
-
-// Detectar cambios en la conexión
+// Eventos de conexión
 window.addEventListener('offline', function() {
     const errorMsg = document.getElementById('errorMsg');
     if (errorMsg) {
-        errorMsg.textContent = '⚠️ Perdiste la conexión. Verifica tu internet ❤️';
+        errorMsg.textContent = '⚠️ Perdiste la conexión ⚠️';
         errorMsg.classList.add('show');
     }
 });

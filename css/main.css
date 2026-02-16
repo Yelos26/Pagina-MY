@@ -6,35 +6,36 @@
 
 body {
     font-family: 'Cormorant Garamond', serif;
-    background: linear-gradient(135deg, #f9f0ff 0%, #f0e6ff 100%);
+    background: linear-gradient(135deg, #1f1212 0%, #2d1a1a 50%, #1a0c0c 100%);
     min-height: 100vh;
     padding: 20px;
     position: relative;
     overflow-x: hidden;
 }
 
-/* Fondo decorativo con flores y corazones */
+/* Fondo decorativo con flores y corazones - VERSIÓN OSCURA */
 body::before {
     content: '';
     position: fixed;
     width: 100%;
     height: 100%;
     background-image: 
-        radial-gradient(circle at 10% 90%, rgba(255, 182, 193, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 90% 10%, rgba(219, 112, 147, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 30% 40%, rgba(147, 112, 219, 0.08) 0%, transparent 50%);
+        radial-gradient(circle at 10% 90%, rgba(139, 30, 63, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 90% 10%, rgba(184, 134, 11, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 30% 40%, rgba(92, 51, 51, 0.15) 0%, transparent 50%);
     z-index: -1;
     top: 0;
     left: 0;
 }
 
-/* Elementos decorativos flotantes */
+/* Elementos decorativos flotantes - VERSIÓN OSCURA */
 .floating-element {
     position: fixed;
     font-size: 24px;
     opacity: 0.1;
     animation: float 20s infinite linear;
     z-index: -1;
+    color: #b8860b;
 }
 
 @keyframes float {
@@ -63,20 +64,20 @@ body::before {
     }
 }
 
-/* Header elegante */
+/* Header elegante - VERSIÓN OSCURA */
 .header {
     text-align: center;
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(10px);
+    background: rgba(26, 15, 15, 0.92);
+    backdrop-filter: blur(12px);
     padding: 40px;
     border-radius: 25px;
     box-shadow: 
-        0 15px 50px rgba(0, 0, 0, 0.08),
-        0 0 0 1px rgba(255, 255, 255, 0.9) inset;
+        0 15px 40px -12px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(184, 134, 11, 0.2) inset;
     margin-bottom: 40px;
     position: relative;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(184, 134, 11, 0.15);
 }
 
 .header::before {
@@ -87,19 +88,19 @@ body::before {
     right: 0;
     height: 4px;
     background: linear-gradient(90deg, 
-        #e6b3cc 0%, 
-        #d9b3ff 33%, 
-        #b3e6ff 66%, 
-        #e6b3cc 100%);
+        #8b1e3f 0%, 
+        #b8860b 33%, 
+        #4d2e2e 66%, 
+        #8b1e3f 100%);
 }
 
 .header h1 {
     font-size: 42px;
-    color: #5d4a66;
+    color: #e6d5d5;
     margin-bottom: 15px;
     font-weight: 600;
     letter-spacing: 1px;
-    background: linear-gradient(45deg, #8a4b8c, #4a4a8c);
+    background: linear-gradient(45deg, #e6b8b8, #b8860b);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -114,6 +115,7 @@ body::before {
     top: 50%;
     transform: translateY(-50%);
     animation: sparkle 2s infinite;
+    color: #b8860b;
 }
 
 @keyframes sparkle {
@@ -122,7 +124,7 @@ body::before {
 }
 
 .header p {
-    color: #8a7b8d;
+    color: #b8a0a0;
     font-size: 20px;
     font-style: italic;
     margin-top: 10px;
@@ -136,7 +138,7 @@ body::before {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    opacity: 0.6;
+    opacity: 0.4;
 }
 
 .header p::before {
@@ -166,16 +168,16 @@ body::before {
     }
 }
 
-/* Carousel Section mejorada */
+/* Carousel Section - MANTENIENDO TU DISEÑO, SOLO COLORES OSCUROS */
 .carousel-section {
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(10px);
+    background: rgba(26, 15, 15, 0.92);
+    backdrop-filter: blur(12px);
     padding: 40px;
     border-radius: 25px;
     box-shadow: 
-        0 15px 50px rgba(0, 0, 0, 0.08),
-        0 0 0 1px rgba(255, 255, 255, 0.9) inset;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+        0 15px 40px -12px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(184, 134, 11, 0.2) inset;
+    border: 1px solid rgba(184, 134, 11, 0.15);
     position: relative;
 }
 
@@ -186,6 +188,7 @@ body::before {
     left: 20px;
     font-size: 24px;
     opacity: 0.3;
+    color: #b8860b;
 }
 
 .carousel {
@@ -194,27 +197,29 @@ body::before {
     height: 550px;
     overflow: hidden;
     border-radius: 20px;
-    background: linear-gradient(135deg, #f8f5ff 0%, #f0ebff 100%);
-    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.05);
+    background: linear-gradient(135deg, #2d1c1c 0%, #1f1212 100%);
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
 }
 
 .carousel-images {
     width: 100%;
     height: 100%;
     position: relative;
+    background: #2d1c1c;
 }
 
 .carousel-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Las imágenes no se distorsionan */
     position: absolute;
     top: 0;
     left: 0;
     opacity: 0;
     transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 15px;
-    filter: brightness(0.95);
+    filter: brightness(0.9);
+    background: #2d1c1c; /* Color de fondo mientras carga */
 }
 
 .carousel-img.active {
@@ -226,12 +231,13 @@ body::before {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.9);
-    border: none;
+    background: rgba(26, 15, 15, 0.8);
+    backdrop-filter: blur(5px);
+    border: 1px solid #b8860b;
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    color: #8a4b8c;
+    color: #e6d5d5;
     font-size: 28px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -239,15 +245,15 @@ body::before {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
 }
 
 .carousel-btn:hover {
-    background: rgba(255, 255, 255, 1);
+    background: #4d2e2e;
+    border-color: #d4af37;
+    color: #ffffff;
     transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    color: #5d4a66;
+    box-shadow: 0 8px 25px rgba(184, 134, 11, 0.3);
 }
 
 .carousel-btn.prev {
@@ -270,11 +276,12 @@ body::before {
     width: 14px;
     height: 14px;
     border-radius: 50%;
-    background: #e0d6e9;
+    background: #4d2e2e;
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    border: 1px solid #b8860b;
 }
 
 .dot::before {
@@ -284,7 +291,7 @@ body::before {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    background: linear-gradient(90deg, transparent, rgba(184, 134, 11, 0.4), transparent);
     transition: left 0.5s ease;
 }
 
@@ -293,21 +300,21 @@ body::before {
 }
 
 .dot.active {
-    background: linear-gradient(135deg, #8a4b8c, #4a4a8c);
+    background: linear-gradient(135deg, #b8860b, #8b1e3f);
     transform: scale(1.3);
-    box-shadow: 0 0 15px rgba(138, 75, 140, 0.3);
+    box-shadow: 0 0 15px rgba(184, 134, 11, 0.5);
 }
 
-/* Projects Section mejorada */
+/* Projects Section - VERSIÓN OSCURA */
 .projects-section {
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(10px);
+    background: rgba(26, 15, 15, 0.92);
+    backdrop-filter: blur(12px);
     padding: 40px;
     border-radius: 25px;
     box-shadow: 
-        0 15px 50px rgba(0, 0, 0, 0.08),
-        0 0 0 1px rgba(255, 255, 255, 0.9) inset;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+        0 15px 40px -12px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(184, 134, 11, 0.2) inset;
+    border: 1px solid rgba(184, 134, 11, 0.15);
     position: relative;
 }
 
@@ -319,10 +326,11 @@ body::before {
     font-size: 24px;
     opacity: 0.3;
     transform: rotate(-15deg);
+    color: #b8860b;
 }
 
 .projects-section h2 {
-    color: #5d4a66;
+    color: #e6d5d5;
     margin-bottom: 30px;
     font-size: 28px;
     text-align: center;
@@ -339,7 +347,7 @@ body::before {
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
-    background: linear-gradient(90deg, #8a4b8c, #4a4a8c);
+    background: linear-gradient(90deg, #b8860b, #8b1e3f);
     border-radius: 3px;
 }
 
@@ -354,33 +362,33 @@ body::before {
 }
 
 .projects-box::-webkit-scrollbar-track {
-    background: rgba(240, 237, 255, 0.5);
+    background: rgba(45, 28, 28, 0.5);
     border-radius: 10px;
 }
 
 .projects-box::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #8a4b8c, #4a4a8c);
+    background: linear-gradient(135deg, #b8860b, #8b1e3f);
     border-radius: 10px;
 }
 
 .projects-box::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #7a3b7c, #3a3a7c);
+    background: linear-gradient(135deg, #d4af37, #a52a4a);
 }
 
 .project-btn {
     width: 100%;
     padding: 20px;
     margin-bottom: 20px;
-    background: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(138, 75, 140, 0.1);
+    background: rgba(45, 28, 28, 0.8);
+    border: 1px solid rgba(184, 134, 11, 0.2);
     border-radius: 15px;
-    color: #5d4a66;
+    color: #e6d5d5;
     font-size: 17px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     text-align: left;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     position: relative;
     overflow: hidden;
     backdrop-filter: blur(5px);
@@ -396,7 +404,7 @@ body::before {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    background: linear-gradient(90deg, transparent, rgba(184, 134, 11, 0.2), transparent);
     transition: left 0.6s ease;
 }
 
@@ -406,9 +414,9 @@ body::before {
 
 .project-btn:hover {
     transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 15px 35px rgba(138, 75, 140, 0.15);
-    background: rgba(255, 255, 255, 0.95);
-    border-color: rgba(138, 75, 140, 0.2);
+    box-shadow: 0 15px 35px rgba(184, 134, 11, 0.2);
+    background: rgba(58, 38, 38, 0.95);
+    border-color: #b8860b;
 }
 
 .project-btn:active {
@@ -419,30 +427,31 @@ body::before {
     font-size: 20px;
     min-width: 30px;
     text-align: center;
+    color: #b8860b;
 }
 
-/* Efecto de brillo en botones específicos */
-.project-btn:nth-child(1) { background: linear-gradient(135deg, rgba(255, 182, 193, 0.1), rgba(255, 255, 255, 0.8)); }
-.project-btn:nth-child(2) { background: linear-gradient(135deg, rgba(147, 112, 219, 0.1), rgba(255, 255, 255, 0.8)); }
-.project-btn:nth-child(3) { background: linear-gradient(135deg, rgba(102, 187, 106, 0.1), rgba(255, 255, 255, 0.8)); }
-.project-btn:nth-child(4) { background: linear-gradient(135deg, rgba(255, 193, 7, 0.1), rgba(255, 255, 255, 0.8)); }
-.project-btn:nth-child(5) { background: linear-gradient(135deg, rgba(233, 30, 99, 0.1), rgba(255, 255, 255, 0.8)); }
-.project-btn:nth-child(6) { background: linear-gradient(135deg, rgba(33, 150, 243, 0.1), rgba(255, 255, 255, 0.8)); }
-.project-btn:nth-child(7) { background: linear-gradient(135deg, rgba(156, 39, 176, 0.1), rgba(255, 255, 255, 0.8)); }
-.project-btn:nth-child(8) { background: linear-gradient(135deg, rgba(0, 150, 136, 0.1), rgba(255, 255, 255, 0.8)); }
+/* Efecto de brillo en botones específicos - VERSIÓN OSCURA */
+.project-btn:nth-child(1) { background: linear-gradient(135deg, rgba(139, 30, 63, 0.2), rgba(45, 28, 28, 0.8)); }
+.project-btn:nth-child(2) { background: linear-gradient(135deg, rgba(184, 134, 11, 0.2), rgba(45, 28, 28, 0.8)); }
+.project-btn:nth-child(3) { background: linear-gradient(135deg, rgba(92, 51, 51, 0.2), rgba(45, 28, 28, 0.8)); }
+.project-btn:nth-child(4) { background: linear-gradient(135deg, rgba(184, 134, 11, 0.2), rgba(45, 28, 28, 0.8)); }
+.project-btn:nth-child(5) { background: linear-gradient(135deg, rgba(139, 30, 63, 0.2), rgba(45, 28, 28, 0.8)); }
+.project-btn:nth-child(6) { background: linear-gradient(135deg, rgba(184, 134, 11, 0.2), rgba(45, 28, 28, 0.8)); }
+.project-btn:nth-child(7) { background: linear-gradient(135deg, rgba(92, 51, 51, 0.2), rgba(45, 28, 28, 0.8)); }
+.project-btn:nth-child(8) { background: linear-gradient(135deg, rgba(184, 134, 11, 0.2), rgba(45, 28, 28, 0.8)); }
 
-/* Footer elegante */
+/* Footer elegante - VERSIÓN OSCURA */
 .footer {
     text-align: center;
     margin-top: 50px;
     padding: 30px;
-    color: #8a7b8d;
+    color: #b8a0a0;
     font-size: 16px;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(26, 15, 15, 0.8);
     backdrop-filter: blur(10px);
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(184, 134, 11, 0.15);
 }
 
 .footer p {
@@ -452,7 +461,7 @@ body::before {
 .heart-beat {
     display: inline-block;
     animation: heartBeat 1.5s infinite;
-    color: #ff6b8b;
+    color: #b8860b;
 }
 
 @keyframes heartBeat {
@@ -460,7 +469,254 @@ body::before {
     50% { transform: scale(1.2); }
 }
 
-/* Responsive Design */
+/* ============================================ */
+/* IMAGEN CON NUBE DE DIÁLOGO - VERSIÓN OSCURA */
+/* ============================================ */
+
+.dialog-section {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+    z-index: 1000;
+    max-width: 80%;
+    animation: slideInLeft 0.6s ease;
+    cursor: grab;
+    transition: left 0.2s ease, bottom 0.2s ease;
+}
+
+.dialog-section:active {
+    cursor: grabbing;
+}
+
+.dialog-section.bubble-hidden .dialog-bubble {
+    display: none;
+}
+
+/* Contenedor de la imagen */
+.image-wrapper {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    padding: 3px;
+    background: linear-gradient(135deg, #b8860b, #8b1e3f);
+    border-radius: 50%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    cursor: grab;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.image-wrapper:active {
+    cursor: grabbing;
+}
+
+.image-wrapper:hover {
+    transform: scale(1.08);
+    box-shadow: 0 15px 35px rgba(184, 134, 11, 0.4);
+}
+
+.dialog-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ffffff;
+}
+
+.image-badge {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: #8b1e3f;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
+    border: 2px solid #b8860b;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.image-wrapper:hover .image-badge {
+    transform: scale(1.1);
+    background: #b8860b;
+    border-color: #ffffff;
+}
+
+/* NUBE DE DIÁLOGO OSCURA */
+.dialog-bubble {
+    position: relative;
+    background: rgba(26, 15, 15, 0.98);
+    backdrop-filter: blur(8px);
+    border-radius: 25px 25px 25px 5px;
+    padding: 18px 22px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    max-width: 350px;
+    min-width: 150px;
+    width: fit-content;
+    animation: fadeInBubble 0.5s ease;
+    border: 1px solid #b8860b;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.dialog-bubble::-webkit-scrollbar {
+    width: 5px;
+}
+
+.dialog-bubble::-webkit-scrollbar-track {
+    background: #2d1c1c;
+    border-radius: 10px;
+}
+
+.dialog-bubble::-webkit-scrollbar-thumb {
+    background: #b8860b;
+    border-radius: 10px;
+}
+
+.bubble-arrow {
+    position: absolute;
+    bottom: 15px;
+    left: -12px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 20px 20px 0;
+    border-color: transparent rgba(26, 15, 15, 0.98) transparent transparent;
+    filter: drop-shadow(-2px 2px 2px rgba(0, 0, 0, 0.3));
+    transition: left 0.3s ease, right 0.3s ease, transform 0.3s ease;
+}
+
+.bubble-content {
+    font-family: 'Segoe UI', sans-serif;
+    color: #e6d5d5;
+    font-size: 16px;
+    line-height: 1.5;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    font-weight: 500;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.bubble-content::-webkit-scrollbar {
+    width: 4px;
+}
+
+.bubble-content::-webkit-scrollbar-track {
+    background: #2d1c1c;
+    border-radius: 10px;
+}
+
+.bubble-content::-webkit-scrollbar-thumb {
+    background: #b8860b;
+    border-radius: 10px;
+}
+
+.bubble-time {
+    font-size: 11px;
+    color: #b8a0a0;
+    margin-top: 10px;
+    text-align: right;
+    font-style: italic;
+    border-top: 1px dashed #4d2e2e;
+    padding-top: 8px;
+}
+
+/* Cuando la imagen está a la derecha */
+.dialog-section.image-right {
+    flex-direction: row-reverse;
+}
+
+.dialog-section.image-right .bubble-arrow {
+    left: auto;
+    right: -12px;
+    transform: rotate(90deg);
+}
+
+@keyframes fadeInBubble {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.dialog-bubble.hiding {
+    animation: bubbleDisappear 0.2s ease forwards;
+}
+
+@keyframes bubbleDisappear {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+/* .message-toggle-btn eliminado */
+
+/* Responsive */
+@media (max-width: 768px) {
+    .dialog-section {
+        bottom: 20px;
+        left: 20px;
+    }
+    
+    .image-wrapper {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .dialog-bubble {
+        max-width: calc(100% - 90px);
+        padding: 15px 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dialog-section {
+        bottom: 15px;
+        left: 15px;
+    }
+    
+    .image-wrapper {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .dialog-bubble {
+        max-width: 100%;
+        min-width: 200px;
+        margin-left: 15px;
+    }
+    
+    .bubble-arrow {
+        bottom: 15px;
+        left: -10px;
+        border-width: 0 15px 15px 0;
+    }
+    
+    .dialog-section.image-right .bubble-arrow {
+        right: -10px;
+    }
+}
+
+/* Responsive Design general */
 @media (max-width: 1200px) {
     .content-wrapper {
         grid-template-columns: 1.5fr 1fr;
@@ -552,22 +808,6 @@ body::before {
     }
 }
 
-/* ============================================ */
-/* IMAGEN CON NUBE DE DIÁLOGO - VERSIÓN CORREGIDA */
-/* ============================================ */
-
-.dialog-section {
-    position: fixed;
-    bottom: 30px;
-    left: 30px;
-    display: flex;
-    align-items: flex-end;
-    gap: 15px;
-    z-index: 1000;
-    max-width: 80%;
-    animation: slideInLeft 0.6s ease;
-}
-
 @keyframes slideInLeft {
     from {
         opacity: 0;
@@ -579,239 +819,6 @@ body::before {
     }
 }
 
-/* Contenedor de la imagen - SIN MODIFICACIONES */
-.image-wrapper {
-    position: relative;
-    width: 90px;
-    height: 90px;
-    /*border-radius: 50%;*/
-    padding: 0;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    flex-shrink: 0;
-}
-
-.image-wrapper:hover {
-    transform: scale(1.05);
-}
-
-.dialog-image {
-    width: 100%;
-    height: 100%;
-    /*border-radius: 50%;*/
-    object-fit: cover;
-    border: 3px solid white;
-}
-
-.image-badge {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background: white;
-    border-radius: 50%;
-    width: 25px;
-    height: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    border: 2px solid #ff69b4;
-}
-
-/* NUBE DE DIÁLOGO ADAPTABLE */
-.dialog-bubble {
-    position: relative;
-    background: white;
-    border-radius: 25px 25px 25px 5px;
-    padding: 18px 22px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-    max-width: 350px;
-    min-width: 150px;
-    width: fit-content;
-    animation: fadeInBubble 0.5s ease;
-    border: 1px solid rgba(255, 182, 193, 0.3);
-}
-
-.bubble-arrow {
-    position: absolute;
-    bottom: 15px;
-    left: -12px;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 20px 20px 0;
-    border-color: transparent white transparent transparent;
-}
-
-.bubble-content {
-    font-family: 'Segoe UI', sans-serif;
-    color: #5d4a66;
-    font-size: 16px;
-    line-height: 1.5;
-    word-wrap: break-word;
-    white-space: pre-wrap;
-    font-weight: 500;
-}
-
-.bubble-time {
-    font-size: 11px;
-    color: #b8a9c3;
-    margin-top: 10px;
-    text-align: right;
-    font-style: italic;
-    border-top: 1px dashed #ffb6c1;
-    padding-top: 8px;
-}
-
-/* BOTÓN ÚNICO - Cambiar mensajes */
-.message-toggle-btn {
-    position: fixed;
-    bottom: 150px;
-    left: 150px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #ff6b8b 0%, #ff4757 100%);
-    border: none;
-    color: white;
-    font-size: 22px;
-    cursor: pointer;
-    box-shadow: 0 5px 20px rgba(255, 107, 139, 0.4);
-    transition: all 0.3s ease;
-    z-index: 1001;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.message-toggle-btn:hover {
-    transform: scale(1.15) rotate(10deg);
-    box-shadow: 0 8px 25px rgba(255, 71, 87, 0.6);
-}
-
-.btn-tooltip {
-    position: absolute;
-    top: -40px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    white-space: nowrap;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    pointer-events: none;
-}
-
-.message-toggle-btn:hover .btn-tooltip {
-    opacity: 1;
-    visibility: visible;
-    top: -50px;
-}
-
-/* Modal para agregar mensajes */
-.message-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-}
-
-.message-modal.show {
-    display: flex;
-}
-
-.modal-container {
-    background: white;
-    width: 90%;
-    max-width: 450px;
-    border-radius: 25px;
-    padding: 30px;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
-    animation: slideUp 0.4s ease;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .dialog-section {
-        bottom: 20px;
-        left: 20px;
-    }
-    
-    .image-wrapper {
-        width: 70px;
-        height: 70px;
-    }
-    
-    .dialog-bubble {
-        max-width: calc(100% - 90px);
-        padding: 15px 18px;
-    }
-    
-    .message-toggle-btn {
-        bottom: 130px;
-        left: 130px;
-        width: 45px;
-        height: 45px;
-        font-size: 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    .dialog-section {
-        bottom: 15px;
-        left: 15px;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .image-wrapper {
-        width: 60px;
-        height: 60px;
-    }
-    
-    .dialog-bubble {
-        max-width: 100%;
-        min-width: 200px;
-        margin-left: 20px;
-    }
-    
-    .bubble-arrow {
-        bottom: auto;
-        top: -12px;
-        left: 30px;
-        border-width: 0 20px 20px 0;
-        transform: rotate(90deg);
-    }
-    
-    .message-toggle-btn {
-        bottom: 250px;
-        left: 30px;
-    }
-}
-
-@keyframes fadeInBubble {
-    from {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
 @keyframes slideUp {
     from {
         opacity: 0;
@@ -820,5 +827,353 @@ body::before {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* ============================================ */
+/* AJUSTES PARA IMAGEN ARRASTRABLE - NUNCA SE SALE */
+/* ============================================ */
+
+.dialog-section {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+    z-index: 1000;
+    max-width: 90vw; /* Limitar ancho máximo */
+    animation: slideInLeft 0.6s ease;
+    cursor: grab;
+    transition: left 0.2s ease, bottom 0.2s ease;
+    will-change: left, bottom;
+}
+
+/* Cuando la burbuja está visible, aseguramos que no se salga */
+.dialog-section:not(.bubble-hidden) {
+    max-width: calc(100vw - 40px);
+}
+
+/* Para cuando está a la derecha */
+.dialog-section.image-right:not(.bubble-hidden) {
+    justify-content: flex-end;
+}
+
+/* La burbuja nunca debe salirse */
+.dialog-bubble {
+    max-width: min(350px, 60vw); /* Responsive */
+    word-break: break-word;
+}
+
+/* En móvil, ajustes especiales */
+@media (max-width: 768px) {
+    .dialog-section:not(.bubble-hidden) {
+        max-width: calc(100vw - 30px);
+    }
+    
+    .dialog-bubble {
+        max-width: min(300px, 50vw);
+    }
+}
+
+@media (max-width: 480px) {
+    .dialog-section:not(.bubble-hidden) {
+        max-width: calc(100vw - 20px);
+    }
+    
+    .dialog-bubble {
+        max-width: min(250px, 45vw);
+    }
+}
+
+/* ============================================ */
+/* IMAGEN Y NUBE - INDEPENDIENTES */
+/* ============================================ */
+
+.dialog-section {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Permite clicks a través del contenedor */
+    z-index: 1000;
+}
+
+.image-wrapper {
+    position: fixed !important; /* La imagen se mueve independiente */
+    width: 90px;
+    height: 90px;
+    padding: 3px;
+    background: linear-gradient(135deg, #b8860b, #8b1e3f);
+    border-radius: 50%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    cursor: grab;
+    transition: transform 0.3s ease;
+    z-index: 1002;
+    pointer-events: auto; /* La imagen es clickeable */
+}
+
+.image-wrapper:active {
+    cursor: grabbing;
+}
+
+.image-wrapper:hover {
+    transform: scale(1.08);
+    box-shadow: 0 15px 35px rgba(184, 134, 11, 0.4);
+}
+
+.dialog-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ffffff;
+}
+
+.image-badge {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: #8b1e3f;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
+    border: 2px solid #b8860b;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.image-wrapper:hover .image-badge {
+    transform: scale(1.1);
+    background: #b8860b;
+    border-color: #ffffff;
+}
+
+/* NUBE INDEPENDIENTE - SE POSICIONA SIN MOVER LA IMAGEN */
+.dialog-bubble {
+    position: fixed !important;
+    background: rgba(26, 15, 15, 0.98);
+    backdrop-filter: blur(8px);
+    border-radius: 25px 25px 25px 5px;
+    padding: 18px 22px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    max-width: 350px;
+    min-width: 150px;
+    width: fit-content;
+    max-width: min(350px, 80vw); /* Límite responsivo */
+    border: 1px solid #b8860b;
+    z-index: 1001;
+    pointer-events: auto;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    
+    /* IMPORTANTE: Eliminar scroll horizontal */
+    overflow-x: hidden;
+    overflow-y: auto; /* Solo scroll vertical si es necesario */
+    word-wrap: break-word; /* Romper palabras largas */
+    word-break: break-word; /* Forzar salto de línea */
+    hyphens: auto; /* Separar sílabas si es necesario */
+}
+
+.dialog-bubble.hiding {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+}
+
+.dialog-section.bubble-hidden .dialog-bubble {
+    display: none;
+}
+
+.bubble-arrow {
+    position: absolute;
+    bottom: 15px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 20px 20px 0;
+    border-color: transparent rgba(26, 15, 15, 0.98) transparent transparent;
+    filter: drop-shadow(-2px 2px 2px rgba(0, 0, 0, 0.3));
+    transition: left 0.3s ease, right 0.3s ease, transform 0.3s ease;
+}
+
+.bubble-content {
+    font-family: 'Segoe UI', sans-serif;
+    color: #e6d5d5;
+    font-size: 16px;
+    line-height: 1.5;
+    white-space: pre-wrap; /* Respetar saltos de línea */
+    font-weight: 500;
+    max-height: 300px;
+    overflow-y: auto; /* Solo scroll vertical */
+    overflow-x: hidden; /* NO scroll horizontal */
+    padding-right: 8px;
+    width: 100%;
+    
+    /* Forzar ajuste de texto */
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+}
+
+.bubble-content span, 
+.bubble-content p {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+/* Scrollbar personalizada - SOLO vertical */
+.bubble-content::-webkit-scrollbar {
+    width: 4px;
+    height: 0; /* Eliminar scroll horizontal */
+}
+
+.bubble-content::-webkit-scrollbar-track {
+    background: #2d1c1c;
+    border-radius: 10px;
+}
+
+.bubble-content::-webkit-scrollbar-thumb {
+    background: #b8860b;
+    border-radius: 10px;
+}
+
+/* Eliminar cualquier scroll horizontal del sistema */
+.dialog-bubble {
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #b8860b #2d1c1c;
+    overflow-x: hidden;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .dialog-bubble {
+        max-width: min(300px, 75vw);
+        padding: 15px 18px;
+    }
+    
+    .bubble-content {
+        font-size: 15px;
+        max-height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dialog-bubble {
+        max-width: min(250px, 70vw);
+        padding: 12px 15px;
+    }
+    
+    .bubble-content {
+        font-size: 14px;
+        max-height: 200px;
+    }
+}
+
+/* Asegurar que la flecha no cause desbordamiento */
+.bubble-arrow {
+    position: absolute;
+    bottom: 15px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 20px 20px 0;
+    border-color: transparent rgba(26, 15, 15, 0.98) transparent transparent;
+    filter: drop-shadow(-2px 2px 2px rgba(0, 0, 0, 0.3));
+    transition: left 0.3s ease, right 0.3s ease, transform 0.3s ease;
+    z-index: 2;
+}
+
+/* ============================================ */
+/* MEJORAS CRÍTICAS PARA MÓVIL*/
+/* ============================================ */
+
+@media (max-width: 768px) {
+    .image-wrapper {
+        width: 65px;
+        height: 65px;
+        touch-action: none; /* Importante para arrastre */
+        -webkit-tap-highlight-color: transparent;
+        cursor: pointer;
+        z-index: 10000; /* Asegurar que esté sobre todo */
+    }
+    
+    /* Área de toque más grande */
+    .image-wrapper::after {
+        content: '';
+        position: absolute;
+        top: -15px;
+        left: -15px;
+        right: -15px;
+        bottom: -15px;
+        background: transparent;
+        border-radius: 50%;
+        z-index: -1;
+    }
+    
+    .dialog-bubble {
+        max-width: min(260px, 70vw);
+        padding: 12px 15px;
+        z-index: 9999;
+        pointer-events: auto;
+        touch-action: pan-y; /* Permitir scroll dentro de la nube */
+        -webkit-overflow-scrolling: touch;
+        font-size: 15px;
+    }
+    
+    /* Para debugging - quitar después */
+    .image-wrapper {
+        border: 2px solid red; /* Temporal para ver área clickeable */
+    }
+}
+
+/* Z-index altos para asegurar click */
+.image-wrapper {
+    z-index: 10001;
+    position: fixed;
+}
+
+.dialog-bubble {
+    z-index: 10000;
+}
+
+@media (max-width: 768px) {
+    .image-wrapper {
+        width: 65px;
+        height: 65px;
+        touch-action: none; /* Mejor control táctil */
+        -webkit-tap-highlight-color: transparent; /* Quitar flash al tocar */
+    }
+    
+    .dialog-bubble {
+        max-width: min(280px, 70vw);
+        padding: 12px 16px;
+        touch-action: pan-y; /* Permitir scroll vertical dentro de la nube */
+        -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+    }
+    
+    .bubble-content {
+        font-size: 15px;
+        max-height: 250px;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Área de click más grande */
+    .image-wrapper::after {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        background: transparent;
+        border-radius: 50%;
     }
 }
